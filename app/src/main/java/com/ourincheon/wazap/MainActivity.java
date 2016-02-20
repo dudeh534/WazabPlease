@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ourincheon.wazap.KaKao.infoKaKao;
+import com.ourincheon.wazap.Require.RequireList;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -171,12 +172,16 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         } else if (id == R.id.alarm) {
 
         } else if (id == R.id.cart) {
+            Intent intent = new Intent(this, RequireList.class);
+            startActivity(intent);
 
         } else if (id == R.id.require) {
             Intent intent = new Intent(this, RequireList.class);
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {
+            Intent intent = new Intent(this, RequireList.class);
+            startActivity(intent);
 
         } else if (id == R.id.setting) {
 

@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ItemInfoActivity" />
         <activity
-            android:name=".RequireList"
+            android:name=".Require.RequireList"
             android:label="신청목록" />
 
         <meta-data
