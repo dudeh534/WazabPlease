@@ -64,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:text="신청"
                 android:id="@+id/require"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>
 
