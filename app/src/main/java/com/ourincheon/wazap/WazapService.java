@@ -5,6 +5,7 @@ import com.ourincheon.wazap.KaKao.infoKaKao;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.Retrofit.UserInfo;
 import com.ourincheon.wazap.Retrofit.regMsg;
+import com.ourincheon.wazap.Retrofit.regUser;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

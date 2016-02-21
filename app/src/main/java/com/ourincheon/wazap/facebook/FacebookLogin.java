@@ -9,6 +9,7 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -71,7 +72,7 @@ public class FacebookLogin extends Activity {
         callbackManager = CallbackManager.Factory.create();
 
         // If the access token is available already assign it.
-        accessToken = AccessToken.getCurrentAccessToken();
+      //  accessToken = AccessToken.getCurrentAccessToken();
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
 
@@ -87,7 +88,7 @@ public class FacebookLogin extends Activity {
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         GraphRequest request = GraphRequest.newMeRequest(
-                                accessToken,
+                                accessToken = AccessToken.getCurrentAccessToken(),
                                 new GraphRequest.GraphJSONObjectCallback() {
                                     @Override
                                     public void onCompleted(
@@ -119,11 +120,13 @@ public class FacebookLogin extends Activity {
                     @Override
                     public void onCancel() {
                         // cancel code
+                        Toast.makeText(getApplicationContext(), "Login cancel", Toast.LENGTH_LONG);
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
                         // error code
+                        Toast.makeText(getApplicationContext(), "Login Error", Toast.LENGTH_LONG);
                     }
                 });
     }
