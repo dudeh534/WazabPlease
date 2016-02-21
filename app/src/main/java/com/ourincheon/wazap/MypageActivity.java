@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.ourincheon.wazap.Retrofit.UserInfo;
@@ -29,6 +30,8 @@ import retrofit2.Retrofit;
 
 public class MypageActivity extends AppCompatActivity {
 
+    ImageView profileImg;
+    String thumbnail;
     regUser reguser;
     private EditText eName, eMajor, eUniv, eLoc, eKakao, eIntro, eExp;
     String access_token, kakao_id, username, password, school, major, locate, introduce, exp;
@@ -48,6 +51,12 @@ public class MypageActivity extends AppCompatActivity {
         eKakao = (EditText) findViewById(R.id.eKakao);
         eIntro = (EditText) findViewById(R.id.eIntro);
         eExp = (EditText) findViewById(R.id.eExp);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        profileImg = (ImageView)findViewById(R.id.ePro);
+        thumbnail = pref.getString("profile_img","");
+        ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
+        thumb.execute();
 
         getInfo();
     }

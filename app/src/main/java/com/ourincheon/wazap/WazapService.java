@@ -1,6 +1,7 @@
 package com.ourincheon.wazap;
 
 
+import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.KaKao.infoKaKao;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.Retrofit.UserInfo;
@@ -9,6 +10,7 @@ import com.ourincheon.wazap.Retrofit.regUser;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -46,7 +48,7 @@ public interface WazapService {
 
     // 모집글 쓰기
     @POST("contests")
-    Call<regMsg> createContests(
+    Call<LinkedTreeMap> createContests(
             @Body ContestInfo contestInfo
     );
 }

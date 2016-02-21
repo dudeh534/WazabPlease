@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -28,6 +29,8 @@ import retrofit2.Retrofit;
  */
 public class showMypageActivity extends AppCompatActivity {
 
+    ImageView profileImg;
+    String thumbnail;
     regUser reguser;
     private TextView sName, sMajor, sUniv, sLoc, sKakao, sIntro, sExp;
 
@@ -46,6 +49,12 @@ public class showMypageActivity extends AppCompatActivity {
         sKakao = (TextView)  findViewById(R.id.sKakao);
         sIntro = (TextView) findViewById(R.id.sIntro);
         sExp = (TextView) findViewById(R.id.sExp);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        profileImg = (ImageView)findViewById(R.id.sPro);
+        thumbnail = pref.getString("profile_img","");
+        ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
+        thumb.execute();
 
         loadPage();
         Intent intent = getIntent();

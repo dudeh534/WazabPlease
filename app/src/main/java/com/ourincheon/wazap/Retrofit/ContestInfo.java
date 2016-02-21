@@ -7,6 +7,7 @@ public class ContestInfo {
     String access_token, title, hosts, categories,period, cover,positions;
     Integer recruitment;
 
+
     public void setAccess_token(String access_token) {
         this.access_token = access_token;
     }

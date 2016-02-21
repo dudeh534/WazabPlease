@@ -142,7 +142,7 @@ public class FacebookLogin extends Activity {
             editor.putString("user_id", user_id);
 
             // 사진 URL 저장, 파라미터로 small, normal, large, square 넣어도 됨
-            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture");
+            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture?type=normal");
             editor.putString("profile_img", url.toString());
 
             // Access_token 저장
