@@ -9,6 +9,7 @@ import android.content.pm.Signature;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -72,7 +73,7 @@ public class FacebookLogin extends Activity {
         callbackManager = CallbackManager.Factory.create();
 
         // If the access token is available already assign it.
-        accessToken = AccessToken.getCurrentAccessToken();
+      //  accessToken = AccessToken.getCurrentAccessToken();
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
 
@@ -88,7 +89,7 @@ public class FacebookLogin extends Activity {
                     public void onSuccess(LoginResult loginResult) {
                         // App code
                         GraphRequest request = GraphRequest.newMeRequest(
-                                accessToken,
+                                accessToken = AccessToken.getCurrentAccessToken(),
                                 new GraphRequest.GraphJSONObjectCallback() {
                                     @Override
                                     public void onCompleted(
@@ -120,11 +121,13 @@ public class FacebookLogin extends Activity {
                     @Override
                     public void onCancel() {
                         // cancel code
+                        Toast.makeText(getApplicationContext(), "Login cancel", Toast.LENGTH_LONG);
                     }
 
                     @Override
                     public void onError(FacebookException exception) {
                         // error code
+                        Toast.makeText(getApplicationContext(), "Login Error", Toast.LENGTH_LONG);
                     }
                 });
     }
@@ -152,13 +155,14 @@ public class FacebookLogin extends Activity {
             editor.putString("user_id", user_id);
 
             // 사진 URL 저장, 파라미터로 small, normal, large, square 넣어도 됨
-            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture");
+            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture?type=normal");
             editor.putString("profile_img", url.toString());
 
             // Access_token 저장
             editor.putString("access_token", accessToken.getToken());
             editor.commit();
 
+            System.out.println("------------------"+pref.getString("access_token",""));
             String baseUrl = "http://come.n.get.us.to";
             Retrofit client = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -190,8 +194,10 @@ public class FacebookLogin extends Activity {
                         loginComplete();
                     } else if (response.isSuccess())
                         Log.d("Response Body is NULL", response.message());
-                    else
+                    else {
                         Log.d("Response Error Body", response.errorBody().toString());
+                        System.out.println(response.code());
+                    }
                 }
 
                 @Override

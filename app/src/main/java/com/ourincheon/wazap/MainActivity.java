@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
        nickname.setText(pref.getString("name",""));
 
         profileImg = (ImageView)header.findViewById(R.id.imageView);
-        thumbnail = pref.getString("profile_img","");
-        ThumbnailImage thumb = new ThumbnailImage();
+       thumbnail = pref.getString("profile_img","");
+        ThumbnailImage thumb = new ThumbnailImage(thumbnail,profileImg);
         thumb.execute();
 
         TextView profileBtn = (TextView)header.findViewById(R.id.showProBtn);
@@ -108,29 +108,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         backPressCloseHandler = new BackPressCloseHandler(this);
     }
 
-    public class ThumbnailImage extends AsyncTask<String, Void, Bitmap> {
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            // TODO Auto-generated method stub
-
-            try {
-                URL url = new URL(thumbnail);
-                InputStream is = url.openConnection().getInputStream();
-                Bitmap bitMap = BitmapFactory.decodeStream(is);
-                return bitMap;
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return null;
-
-        }
-        protected void onPostExecute(Bitmap result) {
-            // TODO Auto-generated method stub
-            super.onPostExecute(result);
-            profileImg.setImageBitmap(result);
-        }
-    }
 
     @Override
     public void onBackPressed() {

@@ -1,6 +1,9 @@
-package com.ourincheon.wazap;
+package com.ourincheon.wazap.Retrofit;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hsue on 16. 2. 19.
@@ -9,7 +12,7 @@ public class regUser
 {
     boolean result;
     String msg;
-    JSONObject data;
+    List<JSONData> data = new ArrayList<JSONData>();
 
     public boolean isResult() {
         return result;
@@ -19,10 +22,6 @@ public class regUser
         return msg;
     }
 
-    public JSONObject getData()
-    {
-        return data;
-    }
 
 }
 
@@ -35,6 +34,4 @@ class JSONData{
     String introduce;
     String exp;
     int age;
-
-
 }

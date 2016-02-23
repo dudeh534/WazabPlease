@@ -2,46 +2,158 @@
 <items version="2" >
 
     <item
-        jar="D:\android-project\wazab\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.10.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="bcb4a50f5e2c67b3e84441b1b2a239856776c9b8">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\classes-eba9ae4d244c6243213d00f7dded8e42a8db9cde.jar" />
-    </item>
-    <item
-        jar="C:\Users\Youngdo\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.3.0\8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c\bolts-tasks-1.3.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.3.0-931db14791df199efca469a086da571867ca3c9c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Youngdo\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.0-beta3\97675641051febfee098903cc0eff62f2826e34e\retrofit-2.0.0-beta3.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="97675641051febfee098903cc0eff62f2826e34e">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\retrofit-2.0.0-beta3-85b6fb95a9f03576df5b32ea20e67348658611b3.jar" />
-    </item>
-    <item
-        jar="C:\Users\Youngdo\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.0.0-RC1\be7e96331952019f16dc52dce09ab25df29353d7\okhttp-3.0.0-RC1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\okhttp-3.0.0-RC1-d6d520c8f70dcb67521e47bdf1e368d6d1eeb896.jar" />
-    </item>
-    <item
-        jar="C:\Users\Youngdo\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.0-beta3\8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2\converter-gson-2.0.0-beta3.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.0-beta3-0195d59f77da23fe70b6a4484560961469db8b78.jar" />
-    </item>
-    <item
-        jar="C:\Users\Youngdo\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.3.0\bc535105332645408ef5f1380215cc954b842178\bolts-applinks-1.3.0.jar"
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.3.0/bc535105332645408ef5f1380215cc954b842178/bolts-applinks-1.3.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="bc535105332645408ef5f1380215cc954b842178">
-        <dex dex="D:\android-project\wazab\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.3.0-f90ff9d513c03dbe0693eecbbb892f23b0dfe8e5.jar" />
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.3.0-353db7754026e2760db8d687ce689f3276bff42a.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/okio-1.6.0-af78e2737e405e272bcd04ffa1c11d29654d30ea.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.3.0/8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c/bolts-tasks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.3.0-79321ed00bf6dd989d24dcd85c308a0d8f69110e.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1-0aff277eb575eb84d45bb545aaebfa840bb0989b.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-4ccd246a2b929314585b1bfb719098145eb23150.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.0.0-RC1/be7e96331952019f16dc52dce09ab25df29353d7/okhttp-3.0.0-RC1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="be7e96331952019f16dc52dce09ab25df29353d7">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/okhttp-3.0.0-RC1-eccbcc3b8d94c69d633394102a3dec902ba763a6.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/util/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cd274d51f5c8edd33f90cd59439813f1b8e0da6a">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-87f4d25af5e28d2aee3a9c5b9513371ff1a96e82.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/usermgmt/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="db5778b91fccdd64b42bf28eaf7bf3c2c6cad256">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-a438f8fec6ed8e2d4003ff62e4bcc767be28ab57.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/gson-2.6.1-3308e2227c389df367f10fcba2c8ba096bc49446.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/network/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="83d318091bcf5a6599895cfd210c09ec5d5e99f7">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-ff57bdba63247fd6f77d9e53206fb56808234c62.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.10.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="bcb4a50f5e2c67b3e84441b1b2a239856776c9b8">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-fee0f0dff1e95651aead5e7574c628e58f5e9258.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-7f12f62f74f000b8614402df89862514c4df3659.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.8/ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2/library-1.0.8.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/library-1.0.8-754e04a1f4f66198b6e7b38b180a74c6580de999.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.0-beta3/8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2/converter-gson-2.0.0-beta3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/converter-gson-2.0.0-beta3-afe3ec0a39cd4a31fa087b20e13de2f28e8c7fa4.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/kakaotalk/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="718b18113a82af949ac7ccb280663dcedaf7838a">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-69a69dafb1cd97706dc35c8b50ae07833965ee38.jar" />
+    </item>
+    <item
+        jar="/home/hsue/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1-0f8b45f1a01b5640d8f91cc94731cef502869e09.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/friends/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f05003d1c70f11e61a06c996621f2904f157be7f">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-fb6e152cdcf78b163414c14aa4874384549cdaa8.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-f5f74da6bf8a9493da3e8f5cec3afc9aaadd5cc1.jar" />
+    </item>
+    <item
+        jar="/home/hsue/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.0-beta3/97675641051febfee098903cc0eff62f2826e34e/retrofit-2.0.0-beta3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="97675641051febfee098903cc0eff62f2826e34e">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/retrofit-2.0.0-beta3-10610f7e25f82ed2d1e53b45ecb908a6d0a21ff5.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-6b49f669e5f9ed846985da71e7e245cf30d58bf2.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-f071a39e15288550a40c1c4119b3915026f6bd7e.jar" />
+    </item>
+    <item
+        jar="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/exploded-aar/com.kakao.sdk/auth/1.1.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="35708bf7ef298d7d79c22fe0e6d7dce4a5d8805f">
+        <dex dex="/home/hsue/AndroidStudioProjects/WazabProject1/app/build/intermediates/pre-dexed/debug/classes-89cfaf3d3609b7deecd7d75ec2101db2c1858d51.jar" />
     </item>
 
 </items>

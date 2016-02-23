@@ -3,7 +3,6 @@ package com.ourincheon.wazap.Retrofit;
 import android.util.Log;
 
 import com.ourincheon.wazap.WazapService;
-import com.ourincheon.wazap.regUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;

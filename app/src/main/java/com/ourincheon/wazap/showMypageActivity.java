@@ -1,11 +1,22 @@
 package com.ourincheon.wazap;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.ourincheon.wazap.Retrofit.regUser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +29,10 @@ import retrofit2.Retrofit;
  */
 public class showMypageActivity extends AppCompatActivity {
 
+    ImageView profileImg;
+    String thumbnail;
     regUser reguser;
+    private TextView sName, sMajor, sUniv, sLoc, sKakao, sIntro, sExp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +41,21 @@ public class showMypageActivity extends AppCompatActivity {
 
      //   RetrofitService retroService = new RetrofitService();
      //   retroService.loadPage();
+
+        sName = (TextView) findViewById(R.id.sName);
+        sMajor = (TextView)  findViewById(R.id.sMajor);
+        sUniv = (TextView)  findViewById(R.id.sUniv);
+        sLoc = (TextView)  findViewById(R.id.sLoc);
+        sKakao = (TextView)  findViewById(R.id.sKakao);
+        sIntro = (TextView) findViewById(R.id.sIntro);
+        sExp = (TextView) findViewById(R.id.sExp);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        profileImg = (ImageView)findViewById(R.id.sPro);
+        thumbnail = pref.getString("profile_img","");
+        ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
+        thumb.execute();
+
         loadPage();
         Intent intent = getIntent();
 
@@ -42,7 +71,11 @@ public class showMypageActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        Call<regUser> call = service.getUserInfo("1");
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String user_id = pref.getString("user_id", "");
+        Log.d("SUCCESS", user_id );
+
+        Call<regUser> call = service.getUserInfo(user_id);
         call.enqueue(new Callback<regUser>() {
             @Override
             public void onResponse( Response<regUser> response) {
@@ -50,8 +83,27 @@ public class showMypageActivity extends AppCompatActivity {
 
                     Log.d("SUCCESS", response.message());
                     reguser = response.body();
+
                     //user = response.body();
-                    Log.d("SUCCESS", reguser.getMsg());
+                    //Log.d("SUCCESS", reguser.getMsg());
+
+                    String result = new Gson().toJson(reguser);
+                    Log.d("SUCESS-----",result);
+
+                    JSONObject jsonRes;
+                    try{
+                        jsonRes = new JSONObject(result);
+                        JSONArray jsonArr = jsonRes.getJSONArray("data");
+                        Log.d("username",jsonArr.getJSONObject(0).getString("username"));
+                        sName.setText(jsonArr.getJSONObject(0).getString("username"));
+                        sMajor.setText(jsonArr.getJSONObject(0).getString("major"));
+                        sUniv.setText(jsonArr.getJSONObject(0).getString("school"));
+                        sLoc.setText(jsonArr.getJSONObject(0).getString("locate"));
+                        sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
+                        sIntro.setText(jsonArr.getJSONObject(0).getString("introduce"));
+                        sExp.setText(jsonArr.getJSONObject(0).getString("exp"));
+                    }catch (JSONException e)
+                    {};
 
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
