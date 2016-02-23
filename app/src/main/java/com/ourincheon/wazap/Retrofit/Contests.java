@@ -24,7 +24,7 @@ public class Contests
 }
 
 class ContestData{
-    int contest_id;
+    int contests_id;
     String title;
     String cont_writer;
     String hosts;
