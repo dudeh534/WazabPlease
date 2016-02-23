@@ -92,16 +92,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="67" selection-start-line="44" selection-start-column="67" selection-end-line="44" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ListAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/Require/ListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -112,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="require_activity.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="require_activity.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/require_activity.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
@@ -120,6 +110,16 @@
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackPressCloseHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/BackPressCloseHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.07678883">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -1703,6 +1703,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/Require/RequireList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/Require/ListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/require_ltem.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/BackPressCloseHandler.java" />
       </list>
     </option>
   </component>
@@ -2787,6 +2788,14 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/BackPressCloseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07678883">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
           <folding />
         </state>
       </provider>
