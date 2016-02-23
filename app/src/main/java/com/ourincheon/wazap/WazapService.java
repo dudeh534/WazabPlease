@@ -4,6 +4,7 @@ package com.ourincheon.wazap;
 import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.KaKao.infoKaKao;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
+import com.ourincheon.wazap.Retrofit.Contests;
 import com.ourincheon.wazap.Retrofit.UserInfo;
 import com.ourincheon.wazap.Retrofit.regMsg;
 import com.ourincheon.wazap.Retrofit.regUser;
@@ -51,6 +52,14 @@ public interface WazapService {
     Call<LinkedTreeMap> createContests(
             @Body ContestInfo contestInfo
     );
+
+    // 메인목록 받아오기
+    @GET("contests")
+    Call<Contests> getContests(
+            @Query("start_id") int start_id,
+            @Query("amount") int amount
+    );
+
 }
 
 
