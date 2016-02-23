@@ -59,7 +59,7 @@
         android:layout_below="@+id/reTitle"
         android:layout_alignRight="@+id/reTitle"
         android:layout_alignEnd="@+id/reTitle"
-        android:id="@+id/editText10" />
+        android:id="@+id/reHost" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
         android:text="카테고리"
         android:textSize="18dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/editText10"
+        android:layout_below="@+id/reHost"
         android:layout_alignLeft="@+id/textView10"
         android:layout_alignStart="@+id/textView10"
         android:id="@+id/textView11" />
@@ -81,16 +81,16 @@
         android:layout_toRightOf="@+id/textView10"
         android:layout_toEndOf="@+id/textView10" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="마케팅/광고"
         android:id="@+id/cAd"
         android:layout_above="@+id/cDoc"
-        android:layout_alignRight="@+id/editText10"
-        android:layout_alignEnd="@+id/editText10" />
+        android:layout_alignRight="@+id/reHost"
+        android:layout_alignEnd="@+id/reHost" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="디자인/UCC"
@@ -99,7 +99,7 @@
         android:layout_alignLeft="@+id/cIT"
         android:layout_alignStart="@+id/cIT" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="논문/문학"
@@ -108,7 +108,7 @@
         android:layout_alignLeft="@+id/cAd"
         android:layout_alignStart="@+id/cAd" />
 
-    <RadioButton
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="게임"

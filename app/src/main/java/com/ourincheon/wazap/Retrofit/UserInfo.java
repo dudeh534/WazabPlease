@@ -13,7 +13,7 @@ public class UserInfo {
     String kakao_id;
     @SerializedName("username")
     String username;
-    @SerializedName("shcool")
+    @SerializedName("school")
     String school;
     @SerializedName("age")
     int age;

@@ -155,13 +155,14 @@ public class FacebookLogin extends Activity {
             editor.putString("user_id", user_id);
 
             // 사진 URL 저장, 파라미터로 small, normal, large, square 넣어도 됨
-            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture");
+            URL url = new URL("https://graph.facebook.com/"+user_id+"/picture?type=normal");
             editor.putString("profile_img", url.toString());
 
             // Access_token 저장
             editor.putString("access_token", accessToken.getToken());
             editor.commit();
 
+            System.out.println("------------------"+pref.getString("access_token",""));
             String baseUrl = "http://come.n.get.us.to";
             Retrofit client = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -193,8 +194,10 @@ public class FacebookLogin extends Activity {
                         loginComplete();
                     } else if (response.isSuccess())
                         Log.d("Response Body is NULL", response.message());
-                    else
+                    else {
                         Log.d("Response Error Body", response.errorBody().toString());
+                        System.out.println(response.code());
+                    }
                 }
 
                 @Override
