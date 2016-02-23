@@ -110,12 +110,16 @@ public class RecruitActivity extends AppCompatActivity {
 
                     } else {
                         Log.d("저장 실패: ", msg);
+                        Toast.makeText(getApplicationContext(), "저장이 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                     }
 
-                } else if (response.isSuccess())
+                } else if (response.isSuccess()) {
                     Log.d("Response Body is NULL", response.message());
-                else
+                    Toast.makeText(getApplicationContext(), "저장이 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Log.d("Response Error Body", response.errorBody().toString());
+                }
             }
 
             @Override

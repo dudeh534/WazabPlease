@@ -96,7 +96,7 @@ public class MypageActivity extends AppCompatActivity {
                         Log.d("username",jsonArr.getJSONObject(0).getString("username"));
                         eName.setText(jsonArr.getJSONObject(0).getString("username"));
                         eMajor.setText(jsonArr.getJSONObject(0).getString("major"));
-                       // eUniv.setText(jsonArr.getJSONObject(0).getString("school"));
+                        eUniv.setText(jsonArr.getJSONObject(0).getString("school"));
                         eLoc.setText(jsonArr.getJSONObject(0).getString("locate"));
                         eKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
                         eIntro.setText(jsonArr.getJSONObject(0).getString("introduce"));
