@@ -149,6 +149,7 @@ public class FacebookLogin extends Activity {
             editor.putString("access_token", accessToken.getToken());
             editor.commit();
 
+            System.out.println("------------------"+pref.getString("access_token",""));
             String baseUrl = "http://come.n.get.us.to";
             Retrofit client = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -180,8 +181,10 @@ public class FacebookLogin extends Activity {
                         loginComplete();
                     } else if (response.isSuccess())
                         Log.d("Response Body is NULL", response.message());
-                    else
+                    else {
                         Log.d("Response Error Body", response.errorBody().toString());
+                        System.out.println(response.code());
+                    }
                 }
 
                 @Override

@@ -20,6 +20,7 @@ import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.facebook.HttpService;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +43,7 @@ public class RecruitActivity extends AppCompatActivity {
     TextView save;
     ImageView profileImg;
     String thumbnail;
-    ContestInfo contest;
+    ContestInfo contest2;
 
 
     @Override
@@ -55,8 +56,8 @@ public class RecruitActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         nickname.setText(pref.getString("name",""));
         String access_token = pref.getString("access_token", "");
-        contest = new ContestInfo();
-        contest.setAccess_token(access_token);
+        contest2 = new ContestInfo();
+        contest2.setAccess_token(access_token);
 
         reTitle = (EditText) findViewById(R.id.reTitle);
         reHost = (EditText) findViewById(R.id.reHost);
@@ -73,14 +74,15 @@ public class RecruitActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), "adshf;aksdf", Toast.LENGTH_SHORT).show();
-                contest.setTitle(reTitle.getText().toString());
-                contest.setRecruitment(Integer.parseInt(eNum.getText().toString()));
-                contest.setHosts(reHost.getText().toString());
-                contest.setCover(erIntro.getText().toString());
-                contest.setCategories("{dev/design : true}");
-                contest.setPeriod("7/24/2016");
-                contest.setPositions("개발자");
-                sendContest(contest);
+                contest2.setTitle(reTitle.getText().toString());
+                contest2.setRecruitment(Integer.parseInt(eNum.getText().toString()));
+                contest2.setHosts(reHost.getText().toString());
+                contest2.setCover(erIntro.getText().toString());
+
+                contest2.setCategories("디자인/UCC");
+                contest2.setPeriod("7/24/2016");
+                contest2.setPositions("개발자");
+                sendContest(contest2);
             }
         });
     }
@@ -104,6 +106,7 @@ public class RecruitActivity extends AppCompatActivity {
                     boolean result = Boolean.parseBoolean(temp.get("result").toString());
                     String msg = temp.get("msg").toString();
 
+
                     if (result) {
                         Log.d("저장 결과: ", msg);
                         Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
@@ -119,6 +122,8 @@ public class RecruitActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d("Response Error Body", response.errorBody().toString());
+                    System.out.println("------------------"+contest2.getAccess_token());
+                    System.out.println(response.code());
                 }
             }
 
