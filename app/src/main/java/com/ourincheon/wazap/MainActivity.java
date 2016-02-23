@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
        nickname.setText(pref.getString("name",""));
 
         profileImg = (ImageView)header.findViewById(R.id.imageView);
-       thumbnail = pref.getString("profile_img","");
+        thumbnail = pref.getString("profile_img","");
         ThumbnailImage thumb = new ThumbnailImage();
         thumb.execute();
 
