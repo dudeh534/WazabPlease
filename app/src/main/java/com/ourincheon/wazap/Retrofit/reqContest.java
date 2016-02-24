@@ -1,16 +1,12 @@
 package com.ourincheon.wazap.Retrofit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by hsue on 16. 2. 23.
+ * Created by sue on 2016-02-24.
  */
-public class Contests
-{
+public class reqContest {
     boolean result;
     String msg;
-    List<ContestData> data = new ArrayList<ContestData>();
+    ContestData data;
 
     public boolean isResult() {
         return result;
@@ -20,5 +16,7 @@ public class Contests
         return msg;
     }
 
-
+    public ContestData getData() {return data;}
 }
+
+
