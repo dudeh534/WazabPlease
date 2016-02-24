@@ -37,6 +37,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="346cacde-799d-433c-a371-06f2cc868734" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\auth_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\bolts_applinks_1_3_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\bolts_tasks_1_3_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\cardview_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\converter_gson_2_0_0_beta3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\design_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\facebook_android_sdk_4_10_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\friends_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\gson_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\kakaotalk_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\library_1_0_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\network_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\okhttp_3_0_0_RC1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\okio_1_6_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\recyclerview_v7_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\retrofit_2_0_0_beta3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\universal_image_loader_1_9_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\usermgmt_1_1_7.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\ChaeYoungDo\AndroidStudioProjects\WazabLast\.idea\libraries\util_1_1_7.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
     <ignored path="WazabLast.iws" />
@@ -82,7 +104,7 @@
       <file leaf-file-name="RecruitActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/RecruitActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.059539918">
               <caret line="79" column="64" selection-start-line="79" selection-start-column="64" selection-end-line="79" selection-end-column="64" />
               <folding />
             </state>
@@ -2399,6 +2421,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2464,6 +2487,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2515,6 +2539,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2647,7 +2672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ourincheon/wazap/RecruitActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-0.059539918">
           <caret line="79" column="64" selection-start-line="79" selection-start-column="64" selection-end-line="79" selection-end-column="64" />
           <folding />
         </state>
