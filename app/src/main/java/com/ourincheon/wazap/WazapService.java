@@ -8,6 +8,7 @@ import com.ourincheon.wazap.Retrofit.Contests;
 import com.ourincheon.wazap.Retrofit.UserInfo;
 import com.ourincheon.wazap.Retrofit.regMsg;
 import com.ourincheon.wazap.Retrofit.regUser;
+import com.ourincheon.wazap.Retrofit.reqContest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -58,6 +59,12 @@ public interface WazapService {
     Call<Contests> getContests(
             @Query("start_id") int start_id,
             @Query("amount") int amount
+    );
+
+    // 상세 정보 받아오기
+    @GET("contests/{contest_id}")
+    Call<reqContest> getConInfo(
+            @Path("contest_id") String contest_id
     );
 
 }
