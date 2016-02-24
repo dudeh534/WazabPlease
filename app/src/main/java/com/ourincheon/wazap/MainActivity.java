@@ -2,10 +2,8 @@ package com.ourincheon.wazap;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -23,12 +21,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ourincheon.wazap.KaKao.infoKaKao;
 import com.ourincheon.wazap.Require.RequireList;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 /*
 * TODO - TABLayout RecyclerView insert
@@ -46,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Drawable drawable = getResources().getDrawable(R.drawable.detail_title_banner);
+        toolbar.setBackground(drawable);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
