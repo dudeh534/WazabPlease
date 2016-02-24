@@ -84,6 +84,14 @@ public interface WazapService {
             @Path("contest_id") String contest_id,
             @Field("access_token") String access_token
     );
+
+    // 신청목록 받아오기
+    @GET("contests/applications")
+    Call<Contests> getAppplylist(
+            @Query("access_token") String access_token,
+            @Query("start_id") int start_id,
+            @Query("amount") int amount
+    );
 }
 
 

@@ -20,5 +20,9 @@ public class Contests
         return msg;
     }
 
+    public ContestData getData(int i)
+    {
+        return data.get(i);
+    }
 
 }
