@@ -13,6 +13,7 @@ import com.ourincheon.wazap.Retrofit.reqContest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -67,6 +68,22 @@ public interface WazapService {
             @Path("contest_id") String contest_id
     );
 
+    // 모집글 신청
+    @FormUrlEncoded
+    @POST("contests/{contest_id}/join")
+    Call<LinkedTreeMap> applyContests(
+            @Path("contest_id") String contest_id,
+            @Field("access_token") String access_token
+
+    );
+
+    // 글 찜하기
+    @FormUrlEncoded
+    @POST("clips/{contest_id}")
+    Call<LinkedTreeMap> clipContests(
+            @Path("contest_id") String contest_id,
+            @Field("access_token") String access_token
+    );
 }
 
 
