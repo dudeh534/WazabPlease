@@ -80,7 +80,7 @@ public class RecruitActivity extends AppCompatActivity {
                 contest2.setCover(erIntro.getText().toString());
 
                 contest2.setCategories("디자인/UCC");
-                contest2.setPeriod("7/24/2016");
+                contest2.setPeriod("2016-03-01");
                 contest2.setPositions("개발자");
                 sendContest(contest2);
             }

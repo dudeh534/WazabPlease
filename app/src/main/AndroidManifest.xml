@@ -63,8 +63,10 @@
             android:name=".JoinActivity"
             android:label="@string/title_activity_join" />
         <activity android:name=".AlarmList" />
-        <activity android:name=".ClipList"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
+        <activity
+            android:name=".ClipList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ApplyList" android:theme="@style/Theme.AppCompat.Light.NoActionBar" ></activity>
     </application>
 
 </manifest>

@@ -37,10 +37,12 @@ public class ListAdapter extends ArrayAdapter<String> {
     TextView dday, title, cate, man;
     ImageView small;
     Button bt;
+    /*
     Contests contest;
     ArrayList<ApplyList> apply_list = new ArrayList<ApplyList>();
     int count;
     ApplyList con;
+    */
 
     public ListAdapter(Activity context, int resource) {
         super(context, resource);
@@ -48,7 +50,7 @@ public class ListAdapter extends ArrayAdapter<String> {
         //list = new ArrayList<Contests>();
         SharedPreferences pref = context.getSharedPreferences("pref", context.MODE_PRIVATE);
         String access_token = pref.getString("access_token","");
-        loadPage(access_token);
+     //   loadPage(access_token);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ListAdapter extends ArrayAdapter<String> {
         bt = (Button) rowView.findViewById(R.id.require);
 
         dday.setText("D-14");
-        title.setText(apply_list.get(position).getTitle());
+       // title.setText(apply_list.get(position).getTitle());
         cate.setText("영상/ucc/사진");
         man.setText("모집인원 5명");
         return rowView;
@@ -70,9 +72,9 @@ public class ListAdapter extends ArrayAdapter<String> {
 
     @Override
     public int getCount() {
-        return apply_list.size();
+        return 5;
     }
-
+/*
     void loadPage(String access_token)
     {
         Retrofit retrofit = new Retrofit.Builder()
@@ -139,51 +141,5 @@ public class ListAdapter extends ArrayAdapter<String> {
     {
         apply_list.add(apply);
         notifyDataSetChanged();
-    }
-}
-
-class ApplyList
-{
-    String title, categories, period;
-    int recruitment, contests_id;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCategories() {
-        return categories;
-    }
-
-    public void setCategories(String categories) {
-        this.categories = categories;
-    }
-
-    public String getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
-    }
-
-    public int getRecruitment() {
-        return recruitment;
-    }
-
-    public void setRecruitment(int recruitment) {
-        this.recruitment = recruitment;
-    }
-
-    public int getContests_id() {
-        return contests_id;
-    }
-
-    public void setContests_id(int contests_id) {
-        this.contests_id = contests_id;
-    }
+    }*/
 }
