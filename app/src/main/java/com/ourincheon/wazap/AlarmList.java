@@ -34,6 +34,10 @@ import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Created by hsue on 16. 2. 25.
+ */
+
 public class AlarmList extends AppCompatActivity {
     private ListView mListView = null;
     private ListViewAdapter mAdapter = null;

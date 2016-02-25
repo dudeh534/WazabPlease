@@ -101,6 +101,14 @@ public interface WazapService {
             @Query("start_id") int start_id,
             @Query("amount") int amount
     );
+
+    // 찜목록 받아오기
+    @GET("clips")
+    Call<Contests> getCliplist(
+            @Query("access_token") String access_token,
+            @Query("start_id") int start_id,
+            @Query("amount") int amount
+    );
 }
 
 
