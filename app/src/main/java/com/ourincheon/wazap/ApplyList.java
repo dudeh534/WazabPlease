@@ -133,7 +133,7 @@ public class ApplyList extends AppCompatActivity {
 
     private class ViewHolder {
         // public ImageView mIcon;
-
+        public TextView Dday;
         public TextView Title;
         public TextView Cate;
         public TextView Man;
@@ -167,7 +167,8 @@ public class ApplyList extends AppCompatActivity {
         public void addItem(String title, String period, int apply, int recruit, int id, int member){
             ContestData addInfo = null;
             addInfo = new ContestData();
-            addInfo.setPeriod(period);
+            String[] parts = period.split("T");
+            addInfo.setPeriod(parts[0]);
             addInfo.setAppliers(apply);
             addInfo.setRecruitment(recruit);
             addInfo.setContests_id(id);
@@ -197,6 +198,7 @@ public class ApplyList extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.apply_item, null);
 
+                holder.Dday = (TextView) convertView.findViewById(R.id.dday);
                 holder.Title = (TextView) convertView.findViewById(R.id.title);
                 holder.Cate = (TextView) convertView.findViewById(R.id.cate);
                 holder.Man = (TextView) convertView.findViewById(R.id.man);
@@ -210,6 +212,9 @@ public class ApplyList extends AppCompatActivity {
 
            // System.out.println(mData.getAppliers());
 
+            Dday day = new Dday();
+            holder.Dday.setText("D - "+day.dday(mData.getPeriod()));
+
             holder.Title.setText(mData.getTitle());
             if(mData.getRecruitment()==0)
                 holder.Cate.setText("모집인원 " + 0 + "명");
@@ -221,10 +226,12 @@ public class ApplyList extends AppCompatActivity {
             else
                 holder.Man.setText("신청인원 "+mData.getAppliers() + "명");
 
-            //if(mData.getMembers()==0)
+           // int member = mData.getMembers();
+
+           // if(mData.getMembers()==0)
            //     holder.Member.setText("확정인원 "+0 + "명");
            // else
-            //    holder.Member.setText("확정인원 "+mData.getMembers() + "명");
+           //     holder.Member.setText("확정인원 "+member + "명");
 
             return convertView;
         }
