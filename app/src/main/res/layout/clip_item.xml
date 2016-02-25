@@ -25,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="D - 52"
-                    android:id="@+id/cdday"
+                    android:id="@+id/cDday"
                     android:textSize="11dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="12.33dp"
@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="[서울] 한화생명"
-                    android:id="@+id/ctitle"
+                    android:id="@+id/cTitle"
                     android:textSize="16dp"
                     android:layout_marginLeft="16dp"
                     android:textColor="#000000"
@@ -50,32 +50,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="모집인원 5명"
-                        android:id="@+id/cate"
+                        android:id="@+id/cCate"
                         android:layout_marginLeft="16dp"
                         android:layout_marginBottom="16dp"
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="6dp"
                         android:textSize="13dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="|"
-                        android:id="@+id/textView27"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="17.33dp"
-                        android:textSize="11dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="신청인원 12명"
-                        android:id="@+id/man"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="4dp"
-                        android:textSize="13dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_marginLeft="6dp" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -90,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="확정인원 2명"
-                        android:id="@+id/textView26"
+                        android:id="@+id/cMember"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="16dp"
                         android:textSize="13dp"
