@@ -179,7 +179,7 @@ public class FragmentPage extends Fragment {
         WazapService service = retrofit.create(WazapService.class);
 
 
-        Call<Contests> call = service.getContests(75,10);
+        Call<Contests> call = service.getContests(100,10);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {

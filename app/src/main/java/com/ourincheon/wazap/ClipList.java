@@ -59,13 +59,13 @@ public class ClipList extends AppCompatActivity {
 
         clip_list = new ArrayList<ContestData>();
 
-       // loadClip(access_token);
+        loadClip(access_token);
 
 
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
-        mAdapter.addItem("qewrqwe");
+      //  mAdapter.addItem("qewrqwe");
     /*    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -89,7 +89,7 @@ public class ClipList extends AppCompatActivity {
 
 
 
- /*
+
         Call<Contests> call = service.getCliplist(access_token, 10, 10);
         call.enqueue(new Callback<Contests>() {
             @Override
@@ -99,7 +99,7 @@ public class ClipList extends AppCompatActivity {
                     Log.d("SUCCESS", response.message());
                     clips = response.body();
 
-                   String result = new Gson().toJson(alarms);
+                   String result = new Gson().toJson(clips);
                     Log.d("SUCESS-----", result);
 
                     JSONObject jsonRes;
@@ -110,8 +110,9 @@ public class ClipList extends AppCompatActivity {
                         System.out.println(count);
                         for (int i = 0; i < count; i++) {
 
-                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"), jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")), Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
+                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("title"));
+                            // jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
+                                   // Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")), Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -129,7 +130,7 @@ public class ClipList extends AppCompatActivity {
                 t.printStackTrace();
                 Log.e("Error", t.getMessage());
             }
-        }); */
+        });
     }
 
 
