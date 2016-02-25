@@ -146,13 +146,15 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.alarm) {
-
+            Intent intent = new Intent(this, AlarmList.class);
+            startActivity(intent);
         } else if (id == R.id.cart) {
             Intent intent = new Intent(this, RequireList.class);
             startActivity(intent);
 
         } else if (id == R.id.require) {
             Intent intent = new Intent(this, RequireList.class);
+            intent.putExtra("id",3);
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {
