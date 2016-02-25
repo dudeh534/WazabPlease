@@ -1,9 +1,11 @@
 package com.ourincheon.wazap;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -37,6 +39,9 @@ public class JoinActivity extends AppCompatActivity {
     TextView jTitle,jButton;
     String access_token,num;
     Button jPick;
+    AlertDialog.Builder ad;
+    Button eBtn;
+    CharSequence list[] = {"수정하기", "삭제하기","취소"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,43 @@ public class JoinActivity extends AppCompatActivity {
                 pickContest(num, access_token);
             }
         });
+
+        ad = new AlertDialog.Builder(this);
+        ad.setTitle("팀원모집");
+        ad.setItems(list, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),
+                        "You Choose : " + list[which],
+                        Toast.LENGTH_LONG).show();
+                if(which == 2)
+                    dialog.cancel();
+            }
+        });
+
+     /*   ad.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),
+                        "취소",
+                        Toast.LENGTH_LONG).show();
+                dialog.cancel();
+            }
+        });
+*/
+        /*********************************/
+        eBtn = (Button) findViewById(R.id.jEdit);
+        eBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ad.show();
+            }
+        });
+
+
+        /*********************************/
     }
+
 
     void pickContest(String num, String access_token) {
         Retrofit retrofit = new Retrofit.Builder()

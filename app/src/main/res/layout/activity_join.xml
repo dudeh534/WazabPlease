@@ -7,13 +7,22 @@
     tools:context="com.ourincheon.wazap.JoinActivity">
 
     <Button
+        android:text="..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jEdit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
         android:text="찜하기"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/jPick"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/jTitle"
+        android:layout_alignLeft="@+id/jEdit"
+        android:layout_alignStart="@+id/jEdit" />
 
     <TextView
         android:id="@+id/jTitle"
