@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ContestList.class);
             startActivity(intent);
 
         } else if (id == R.id.setting) {

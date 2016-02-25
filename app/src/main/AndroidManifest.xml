@@ -71,6 +71,9 @@
             android:name=".ApplyList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".ContestList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".MasterJoinActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="@string/title_activity_master_join" >

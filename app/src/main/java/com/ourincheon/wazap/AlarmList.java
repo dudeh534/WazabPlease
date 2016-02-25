@@ -120,18 +120,12 @@ public class AlarmList extends AppCompatActivity {
                         count = jsonArr.length();
                         System.out.println(count);
                         for (int i = 0; i < count; i++) {
-                           /*   con = new AlarmData();
-                              con.setAlramdate(jsonArr.getJSONObject(i).getString("alramdate"));
-                              con.setMsg(jsonArr.getJSONObject(i).getString("msg"));
-                            con.setMsg_url(jsonArr.getJSONObject(i).getString("msg_url"));
 
-                            addItem(con);
-                            System.out.println(alarm_list.size() + "-------------------");
-                            System.out.println(con.getMsg());
-*/
-
-                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"), jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")),Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
+                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"),
+                                    jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")),
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")),
+                                    jsonArr.getJSONObject(i).getString("username"));
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -186,14 +180,16 @@ public class AlarmList extends AppCompatActivity {
             return position;
         }
 
-        public void addItem(String icon, String msg, String mDate, int alarm_id, int is_check){
+        public void addItem(String icon, String msg, String date, int alarm_id, int is_check, String username){
             AlarmData addInfo = null;
             addInfo = new AlarmData();
             addInfo.msg_url = icon;
             addInfo.msg = msg;
-            addInfo.alramdate = mDate;
+            String[] parts = date.split("T");
+            addInfo.alramdate=parts[0];
             addInfo.alram_id = alarm_id;
             addInfo.is_check = is_check;
+            addInfo.username = username;
 
             mListData.add(addInfo);
         }
@@ -235,7 +231,7 @@ public class AlarmList extends AppCompatActivity {
                 holder.mIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_user));
             }
 
-            holder.mText.setText(mData.msg);
+            holder.mText.setText(mData.username + mData.msg);
             holder.mDate.setText(mData.alramdate);
 
             return convertView;

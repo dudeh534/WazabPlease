@@ -69,7 +69,7 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    void pickContest(String num, String access_token) {
+    void pickContest(String num, final String access_token) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -89,15 +89,18 @@ public class JoinActivity extends AppCompatActivity {
                     boolean result = Boolean.parseBoolean(temp.get("result").toString());
                     String msg = temp.get("msg").toString();
 
-                    if (result) {
-                        Log.d("저장 결과: ", msg);
-                        Toast.makeText(getApplicationContext(), "찜 되었습니다.", Toast.LENGTH_SHORT).show();
+                    if(!msg.equals("이미 찜한 게시물 입니다.")) {
+                        if (result) {
+                            Log.d("저장 결과: ", msg);
+                            Toast.makeText(getApplicationContext(), "찜 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        Log.d("저장 실패: ", msg);
-                        Toast.makeText(getApplicationContext(), "찜 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.d("저장 실패: ", msg);
+                            Toast.makeText(getApplicationContext(), "찜 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-
+                    else
+                        removeClip();
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
                 } else {
@@ -111,6 +114,11 @@ public class JoinActivity extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
             }
         });
+    }
+
+    void removeClip()
+    {
+
     }
 
     void applyContest(String num, String access_token)

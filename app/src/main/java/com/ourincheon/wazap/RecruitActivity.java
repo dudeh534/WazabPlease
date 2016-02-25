@@ -116,7 +116,6 @@ public class RecruitActivity extends AppCompatActivity {
                 .build();
         WazapService service = client.create(WazapService.class);
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!"+contest_id);
         Call<LinkedTreeMap> call = service.editContest(String.valueOf(contest_id), contest);
         call.enqueue(new Callback<LinkedTreeMap>() {
             @Override

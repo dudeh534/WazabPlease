@@ -12,11 +12,20 @@ public class AlarmData {
 
 
     public Drawable mIcon;
+    String username;
     int alram_id;
     String msg;
     String msg_url;
     String alramdate;
     int is_check;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Drawable getmIcon() {
         return mIcon;

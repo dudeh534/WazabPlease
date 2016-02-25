@@ -58,15 +58,15 @@ public class ClipList extends AppCompatActivity {
 
         loadClip(access_token);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    /*    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ContestData mData = mAdapter.mListData.get(position);
-                Toast.makeText(ClipList.this, ""+mData.getContests_id(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClipList.this, mData.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 

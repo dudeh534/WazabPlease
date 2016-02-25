@@ -125,6 +125,13 @@ public interface WazapService {
             @Path("contest_id") String contest_id,
             @Query("access_token") String access_token
     );
+
+    // 모집목록 받아오기
+    @GET("contests/list/{writer_id}")
+    Call<Contests> getContestlist(
+            @Path("writer_id") String writer_id,
+            @Query("access_token") String access_token
+    );
 }
 
 
