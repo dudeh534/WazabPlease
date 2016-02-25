@@ -13,6 +13,7 @@ import com.ourincheon.wazap.Retrofit.reqContest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -113,9 +114,16 @@ public interface WazapService {
 
     // 게시글 수정하기
     @PUT("contests/{contest_id}")
-    Call<Contests> editContest(
+    Call<LinkedTreeMap> editContest(
             @Path("contest_id") String contest_id,
             @Body ContestInfo contestInfo
+    );
+
+    // 게시글 삭제하기
+    @DELETE("contests/{contest_id}")
+    Call<LinkedTreeMap> delContest(
+            @Path("contest_id") String contest_id,
+            @Query("access_token") String access_token
     );
 }
 

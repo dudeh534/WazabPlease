@@ -90,14 +90,11 @@ public class MasterJoinActivity extends AppCompatActivity {
         ad.setItems(list, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),
-                        "You Choose : " + list[which],
-                        Toast.LENGTH_LONG).show();
                 if(which == 0)
                    editCont();
-                else if(which == 1)
-                    dialog.cancel();
-                else if(which == 2)
+                if(which == 1)
+                    delCont();
+                if(which == 2)
                     dialog.cancel();
             }
         });
@@ -118,9 +115,56 @@ public class MasterJoinActivity extends AppCompatActivity {
         Intent intent = new Intent(MasterJoinActivity.this, RecruitActivity.class);
         intent.putExtra("edit",1);
         intent.putExtra("contestD",contestData);
+        //intent.putExtra("contestD",contestData.getContests_id());
         startActivity(intent);
     }
 
+    void delCont()
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://come.n.get.us.to/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        WazapService service = retrofit.create(WazapService.class);
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!"+access_token);
+        System.out.println("!!!!!!!!!!!!!!!!!!!"+num);
+
+        Call<LinkedTreeMap> call = service.delContest(num,access_token);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Response<LinkedTreeMap> response) {
+                if (response.isSuccess() && response.body() != null) {
+
+                    LinkedTreeMap temp = response.body();
+
+                    boolean result = Boolean.parseBoolean(temp.get("result").toString());
+                    String msg = temp.get("msg").toString();
+
+                    if (result) {
+                        Log.d("삭제 결과: ", msg);
+                        Toast.makeText(getApplicationContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Log.d("삭제 실패: ", msg);
+                        Toast.makeText(getApplicationContext(), "삭제 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (response.isSuccess()) {
+                    Log.d("Response Body isNull", response.message());
+                } else {
+                    Log.d("Response Error Body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("Error", t.getMessage());
+            }
+        });
+    }
 
     void endContest(String num, String access_token)
     {
@@ -194,6 +238,7 @@ public class MasterJoinActivity extends AppCompatActivity {
 
 
                     System.out.println(contest.getData().getTitle());
+                    contestData.setContests_id(contest.getData().getContests_id());
                     contestData.setTitle(contest.getData().getTitle());
                     contestData.setHosts(contest.getData().getHosts());
                     contestData.setRecruitment(contest.getData().getRecruitment());
