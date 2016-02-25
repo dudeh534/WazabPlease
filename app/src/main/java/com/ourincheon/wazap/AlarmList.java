@@ -100,7 +100,7 @@ public class AlarmList extends AppCompatActivity {
 
 
 
-        Call<Alarms> call = service.getAlarmlist(access_token, 10, 10);
+        Call<Alarms> call = service.getAlarmlist(access_token, 100, 100);
         call.enqueue(new Callback<Alarms>() {
             @Override
             public void onResponse(Response<Alarms> response) {

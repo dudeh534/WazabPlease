@@ -17,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -108,6 +109,13 @@ public interface WazapService {
             @Query("access_token") String access_token,
             @Query("start_id") int start_id,
             @Query("amount") int amount
+    );
+
+    // 게시글 수정하기
+    @PUT("contests/{contest_id}")
+    Call<Contests> editContest(
+            @Path("contest_id") String contest_id,
+            @Body ContestInfo contestInfo
     );
 }
 

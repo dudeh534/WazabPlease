@@ -1,10 +1,12 @@
 package com.ourincheon.wazap.Retrofit;
 
+import java.io.Serializable;
+
 /**
  * Created by sue on 2016-02-24.
  */
 
-public class ContestData {
+public class ContestData  implements Serializable {
     int applies_id;
     int contests_id;
     int recruitment;

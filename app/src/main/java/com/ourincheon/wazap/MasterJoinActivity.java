@@ -36,9 +36,10 @@ import retrofit2.Retrofit;
 public class MasterJoinActivity extends AppCompatActivity {
 
     reqContest contest;
+    ContestData contestData;
     TextView jTitle,jButton;
     String access_token,num;
-    AlertDialog.Builder ad;
+    AlertDialog.Builder ad,deleteD;
     Button eBtn;
     CharSequence list[] = {"수정하기", "삭제하기","취소"};
 
@@ -46,6 +47,8 @@ public class MasterJoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_join);
+
+        contestData = new ContestData();
 
         jTitle = (TextView) findViewById(R.id.jmTitle);
 
@@ -56,11 +59,29 @@ public class MasterJoinActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         access_token = pref.getString("access_token", "");
 
+
+        deleteD = new AlertDialog.Builder(this);
+        deleteD.setMessage("프로그램을 종료 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // endContest(num, access_token);
+                    }
+                }).setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        // 마감버튼
         jButton = (TextView) findViewById(R.id.jmButton);
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                applyContest(num, access_token);
+                AlertDialog alert =  deleteD.create();
+                alert.show();
             }
         });
 
@@ -72,11 +93,16 @@ public class MasterJoinActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "You Choose : " + list[which],
                         Toast.LENGTH_LONG).show();
-                if(which == 2)
+                if(which == 0)
+                   editCont();
+                else if(which == 1)
+                    dialog.cancel();
+                else if(which == 2)
                     dialog.cancel();
             }
         });
 
+        // 수정,삭제버튼
         eBtn = (Button) findViewById(R.id.jmEdit);
         eBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +113,18 @@ public class MasterJoinActivity extends AppCompatActivity {
 
     }
 
-
-    void applyContest(String num, String access_token)
+    void editCont()
     {
+        Intent intent = new Intent(MasterJoinActivity.this, RecruitActivity.class);
+        intent.putExtra("edit",1);
+        intent.putExtra("contestD",contestData);
+        startActivity(intent);
+    }
+
+
+    void endContest(String num, String access_token)
+    {
+        /*
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -131,7 +166,7 @@ public class MasterJoinActivity extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
             }
         });
-
+        */
     }
 
     void loadPage(String num)
@@ -157,8 +192,17 @@ public class MasterJoinActivity extends AppCompatActivity {
                     //user = response.body();
                     Log.d("SUCCESS", contest.getMsg());
 
+
                     System.out.println(contest.getData().getTitle());
-                    jTitle.setText(contest.getData().getTitle());
+                    contestData.setTitle(contest.getData().getTitle());
+                    contestData.setHosts(contest.getData().getHosts());
+                    contestData.setRecruitment(contest.getData().getRecruitment());
+                    contestData.setCategories(contest.getData().getCategories());
+                    contestData.setPeriod(contest.getData().getPeriod());
+                    contestData.setCover(contest.getData().getCover());
+                    contestData.setPositions(contest.getData().getPositions());
+
+                    jTitle.setText(contestData.getTitle());
                   /* String result = new Gson().toJson(contest);
                     Log.d("SUCESS-----", result);
 

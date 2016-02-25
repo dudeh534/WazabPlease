@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.KaKao.infoKaKao;
+import com.ourincheon.wazap.Retrofit.ContestData;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.facebook.HttpService;
 
@@ -68,6 +69,17 @@ public class RecruitActivity extends AppCompatActivity {
         thumbnail = pref.getString("profile_img","");
         ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
         thumb.execute();
+
+        Intent intent = getIntent();
+        if(intent.getExtras().getInt("edit")==1) {
+            System.out.println("----------------------------------------------");
+            ContestData con = new ContestData();
+            con = (ContestData) intent.getExtras().getSerializable("contestD");
+            reTitle.setText(con.getTitle());
+            reHost.setText(con.getHosts());
+            eNum.setText(String.valueOf(con.getRecruitment()));
+            erIntro.setText(con.getCover());
+        }
 
         save = (TextView) findViewById(R.id.textView12);
         save.setOnClickListener(new View.OnClickListener() {

@@ -90,7 +90,7 @@ public class ClipList extends AppCompatActivity {
 
 
 
-        Call<Contests> call = service.getCliplist(access_token, 10, 10);
+        Call<Contests> call = service.getCliplist(access_token, 100, 100);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {
