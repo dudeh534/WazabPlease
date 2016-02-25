@@ -1,5 +1,6 @@
 package com.ourincheon.wazap;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -48,8 +49,8 @@ public class FragmentPage extends Fragment {
     RecyclerAdapter rec;
     List<Recycler_item> items;
     Recycler_item[] item;
-    String[] id_list;
-
+    String[] id_list,writer_list;
+    Intent Joininfo;
 
     public static FragmentPage newInstance(int position) {
         FragmentPage f = new FragmentPage();
@@ -78,12 +79,16 @@ public class FragmentPage extends Fragment {
                 items = new ArrayList<>();
                 loadPage();
 
-
-
+                SharedPreferences pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+                final String user_id = pref.getString("user_id","");
                 content.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), content, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent Joininfo = new Intent(getActivity(), JoinActivity.class);
+
+                        if(writer_list[position].equals(user_id))
+                            Joininfo = new Intent(getActivity(), MasterJoinActivity.class);
+                        else
+                            Joininfo = new Intent(getActivity(), JoinActivity.class);
                         Joininfo.putExtra("id", id_list[position]);
                         startActivity(Joininfo);
                         //  Toast.makeText(getContext(), "position" + id_list[position], Toast.LENGTH_SHORT).show();
@@ -185,6 +190,7 @@ public class FragmentPage extends Fragment {
             public void onResponse(Response<Contests> response) {
                 if (response.isSuccess() && response.body() != null) {
 
+
                     Log.d("SUCCESS", response.message());
                     contest = response.body();
 
@@ -202,9 +208,11 @@ public class FragmentPage extends Fragment {
                         int len = jsonArr.length();
                         item = new Recycler_item[len];
                         id_list = new String[len];
+                        writer_list = new String[len];
 
                         for(int i =0 ; i<len; i++) {
                             id_list[i]=jsonArr.getJSONObject(i).getString("contests_id");
+                            writer_list[i]=jsonArr.getJSONObject(i).getString("cont_writer");
                             item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("username"), jsonArr.getJSONObject(i).getString("hosts"));
                             items.add(item[i]);
                             //
