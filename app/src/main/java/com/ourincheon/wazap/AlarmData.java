@@ -12,7 +12,7 @@ public class AlarmData {
 
 
     public Drawable mIcon;
-    int alarm_id;
+    int alram_id;
     String msg;
     String msg_url;
     String alramdate;
@@ -26,12 +26,12 @@ public class AlarmData {
         this.mIcon = mIcon;
     }
 
-    public int getAlarm_id() {
-        return alarm_id;
+    public int getAlram_id() {
+        return alram_id;
     }
 
-    public void setAlarm_id(int alarm_id) {
-        this.alarm_id = alarm_id;
+    public void setAlram_id(int alram_id) {
+        this.alram_id = alram_id;
     }
 
     public String getMsg() {

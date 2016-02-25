@@ -61,8 +61,9 @@
         <activity android:name=".WebSiteActivity" />
         <activity
             android:name=".JoinActivity"
-            android:label="@string/title_activity_join"></activity>
-        <activity android:name=".AlarmList"></activity>
+            android:label="@string/title_activity_join" />
+        <activity android:name=".AlarmList" />
+        <activity android:name=".ClipList"></activity>
     </application>
 
 </manifest>

@@ -149,12 +149,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             Intent intent = new Intent(this, AlarmList.class);
             startActivity(intent);
         } else if (id == R.id.cart) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ClipList.class);
             startActivity(intent);
 
         } else if (id == R.id.require) {
             Intent intent = new Intent(this, RequireList.class);
-            intent.putExtra("id",3);
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {

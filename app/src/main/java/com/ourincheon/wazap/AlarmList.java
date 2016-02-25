@@ -116,15 +116,18 @@ public class AlarmList extends AppCompatActivity {
                         count = jsonArr.length();
                         System.out.println(count);
                         for (int i = 0; i < count; i++) {
-                      //      con = new AlarmData();
-                      //      con.setAlramdate(jsonArr.getJSONObject(i).getString("alramdate"));
-                       //     con.setMsg(jsonArr.getJSONObject(i).getString("msg"));
-                       //     con.setMsg_url(jsonArr.getJSONObject(i).getString("msg_url"));
-                       //     System.out.println(alarm_list.size() + "-------------------");
-                        //    addItem(con);
-                         //   System.out.println(con.getMsg());
+                           /*   con = new AlarmData();
+                              con.setAlramdate(jsonArr.getJSONObject(i).getString("alramdate"));
+                              con.setMsg(jsonArr.getJSONObject(i).getString("msg"));
+                            con.setMsg_url(jsonArr.getJSONObject(i).getString("msg_url"));
 
-                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"),jsonArr.getJSONObject(i).getString("msg"),jsonArr.getJSONObject(i).getString("alramdate"));
+                            addItem(con);
+                            System.out.println(alarm_list.size() + "-------------------");
+                            System.out.println(con.getMsg());
+*/
+
+                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"), jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")),Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -145,11 +148,6 @@ public class AlarmList extends AppCompatActivity {
         });
     }
 
-    public void addItem(AlarmData alarmData)
-    {
-        alarm_list.add(alarmData);
-        System.out.println("addded");
-    }
 
 
     private class ViewHolder {
@@ -184,12 +182,14 @@ public class AlarmList extends AppCompatActivity {
             return position;
         }
 
-        public void addItem(String icon, String msg, String mDate){
+        public void addItem(String icon, String msg, String mDate, int alarm_id, int is_check){
             AlarmData addInfo = null;
             addInfo = new AlarmData();
-            addInfo.msg = icon;
-            addInfo.msg_url = msg;
+            addInfo.msg_url = icon;
+            addInfo.msg = msg;
             addInfo.alramdate = mDate;
+            addInfo.alram_id = alarm_id;
+            addInfo.is_check = is_check;
 
             mListData.add(addInfo);
         }
@@ -227,7 +227,8 @@ public class AlarmList extends AppCompatActivity {
                 holder.mIcon.setVisibility(View.VISIBLE);
                 holder.mIcon.setImageDrawable(mData.mIcon);
             }else{
-                holder.mIcon.setVisibility(View.GONE);
+                holder.mIcon.setVisibility(View.VISIBLE);
+                holder.mIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_user));
             }
 
             holder.mText.setText(mData.msg);
