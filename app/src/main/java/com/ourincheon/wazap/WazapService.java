@@ -149,6 +149,20 @@ public interface WazapService {
             @Path("applies_id") String applies_id,
             @Field("access_token") String access_token
     );
+
+    // 마감하기
+    @POST("contests/finish/{contest_id}")
+    Call<LinkedTreeMap> finishContest(
+            @Path("contest_id") String contest_id,
+            @Body Access access_token
+    );
+
+    // 게시글 삭제하기
+    @DELETE("clips/{contest_id}")
+    Call<LinkedTreeMap> delClip(
+            @Path("contest_id") String contest_id,
+            @Query("access_token") String access_token
+    );
 }
 
 

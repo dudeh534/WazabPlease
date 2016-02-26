@@ -1,6 +1,8 @@
 package com.ourincheon.wazap;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +45,9 @@ public class ClipList extends AppCompatActivity {
     Contests clips;
     ArrayList<ContestData> clip_list;
     int count;
+    AlertDialog dialog;
+    String access_token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +57,34 @@ public class ClipList extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.cliplistView);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String access_token = pref.getString("access_token", "");
+        access_token = pref.getString("access_token", "");
 
         clip_list = new ArrayList<ContestData>();
 
         loadClip(access_token);
 
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("찜 목록 지우기").setMessage("해당 스크랩을 지우시겠습니까?")
+                .setCancelable(true).setPositiveButton("지우기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //finish();
+                deleteClip();
+            }
+        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog = builder.create();
+
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ClipList.this, "취소", Toast.LENGTH_SHORT).show();
+                dialog.show();
                 return false;
             }
         });
@@ -69,9 +92,13 @@ public class ClipList extends AppCompatActivity {
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
-
-
     }
+
+    void deleteClip()
+    {
+        
+    }
+
 
     void loadClip(String access_token)
     {
@@ -85,7 +112,7 @@ public class ClipList extends AppCompatActivity {
 
 
 
-        Call<Contests> call = service.getCliplist(access_token, 100, 100);
+        Call<Contests> call = service.getCliplist(access_token, 200, 200);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {

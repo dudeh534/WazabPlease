@@ -61,11 +61,11 @@ public class MasterJoinActivity extends AppCompatActivity {
 
 
         deleteD = new AlertDialog.Builder(this);
-        deleteD.setMessage("프로그램을 종료 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+        deleteD.setMessage("모집글을 마감하시겠습니까?").setCancelable(false).setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // endContest(num, access_token);
+                     endContest(num, access_token);
                     }
                 }).setNegativeButton("취소",
                 new DialogInterface.OnClickListener() {
@@ -75,7 +75,7 @@ public class MasterJoinActivity extends AppCompatActivity {
                     }
                 });
 
-        // 마감버튼
+        // 마감버튼까
         jButton = (TextView) findViewById(R.id.jmButton);
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +179,6 @@ public class MasterJoinActivity extends AppCompatActivity {
 
     void endContest(String num, String access_token)
     {
-        /*
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -188,7 +187,10 @@ public class MasterJoinActivity extends AppCompatActivity {
         WazapService service = retrofit.create(WazapService.class);
 
         System.out.println("-------------------"+access_token);
-        Call<LinkedTreeMap> call = service.applyContests(num,access_token);
+        Access access = new Access();
+        access.setAccess_token(access_token);
+
+        Call<LinkedTreeMap> call = service.finishContest(num, access);
         call.enqueue(new Callback<LinkedTreeMap>() {
             @Override
             public void onResponse(Response<LinkedTreeMap> response) {
@@ -201,11 +203,11 @@ public class MasterJoinActivity extends AppCompatActivity {
 
                     if (result) {
                         Log.d("저장 결과: ", msg);
-                        Toast.makeText(getApplicationContext(), "신청되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "마감되었습니다.", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Log.d("저장 실패: ", msg);
-                        Toast.makeText(getApplicationContext(), "신청 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "마감 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                     }
 
                 } else if (response.isSuccess()) {
@@ -221,7 +223,6 @@ public class MasterJoinActivity extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
             }
         });
-        */
     }
 
     void loadPage(String num)
@@ -308,5 +309,18 @@ public class MasterJoinActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+}
+
+class Access
+{
+    String access_token;
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 }
