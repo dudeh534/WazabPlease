@@ -12,8 +12,9 @@
         android:padding="1dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
+
         <Button
-            android:id="@+id/libray_btn_toggle"
+            android:id="@+id/jBefore"
             android:layout_width="15dp"
             android:layout_height="24dp"
             android:background="@drawable/detail_btn_back"

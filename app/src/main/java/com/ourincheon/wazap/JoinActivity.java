@@ -36,7 +36,7 @@ public class JoinActivity extends AppCompatActivity {
     reqContest contest;
     TextView jTitle,jButton,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
     String access_token,num;
-    Button jPick;
+    Button jPick,jBefore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,14 @@ public class JoinActivity extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         access_token = pref.getString("access_token", "");
+
+        jBefore = (Button) findViewById(R.id.jBefore);
+        jBefore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         jButton = (TextView) findViewById(R.id.jButton);
         jButton.setOnClickListener(new View.OnClickListener() {

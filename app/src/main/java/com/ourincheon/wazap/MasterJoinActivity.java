@@ -38,7 +38,7 @@ public class MasterJoinActivity extends AppCompatActivity {
     reqContest contest;
     ContestData contestData;
     TextView jTitle,jButton,jmList,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
-    Button eBtn;
+    Button eBtn,jBefore;
     String access_token,num;
     AlertDialog.Builder ad,deleteD;
     CharSequence list[] = {"수정하기", "삭제하기","취소"};
@@ -90,6 +90,14 @@ public class MasterJoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog alert = deleteD.create();
                 alert.show();
+            }
+        });
+
+        jBefore = (Button) findViewById(R.id.jmBefore);
+        jBefore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
