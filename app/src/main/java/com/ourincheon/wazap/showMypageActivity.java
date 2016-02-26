@@ -57,7 +57,6 @@ public class showMypageActivity extends AppCompatActivity {
         thumb.execute();
 
         loadPage();
-        Intent intent = getIntent();
 
     }
 

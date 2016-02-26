@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -131,7 +132,8 @@ public class ApplierList extends AppCompatActivity {
 
         public ImageView aImage;
         public TextView aName;
-
+        public Button aPBtn;
+        public Button aABtn;
     }
 
     private class ListViewAdapter extends BaseAdapter {
@@ -161,7 +163,12 @@ public class ApplierList extends AppCompatActivity {
         public void addItem(String img, String name,String id, int is_check ){
             ApplierData addInfo = null;
             addInfo = new ApplierData();
-            addInfo.setProfile_img(img);
+            try {
+                String thumb = URLDecoder.decode(img, "EUC_KR");
+                addInfo.setProfile_img(thumb);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             //String[] parts = period.split("T");
             //addInfo.setPeriod(parts[0]);
             addInfo.setUsername(name);
@@ -183,6 +190,8 @@ public class ApplierList extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
+            final Context context = parent.getContext();
+
             if (convertView == null) {
                 holder = new ViewHolder();
 
@@ -191,14 +200,14 @@ public class ApplierList extends AppCompatActivity {
 
                 holder.aName = (TextView) convertView.findViewById(R.id.aName);
                 holder.aImage = (ImageView) convertView.findViewById(R.id.aImage);
-
+                holder.aPBtn = (Button) convertView.findViewById(R.id.aPBtn);
 
                 convertView.setTag(holder);
             }else{
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            ApplierData mData = mListData.get(position);
+            final ApplierData mData = mListData.get(position);
 
 
             holder.aName.setText(mData.getUsername());
@@ -207,18 +216,26 @@ public class ApplierList extends AppCompatActivity {
 
             //holder.Member.setText("확정인원 " + mData.getMembers() + "명");
 
-            String thumbnail = null;
-            try {
-                thumbnail = URLDecoder.decode(mData.getProfile_img(), "EUC_KR");
-                System.out.println(thumbnail);
+          if (mData.getProfile_img() != null) {
+              holder.aImage.setVisibility(View.VISIBLE);
+              ThumbnailImage thumb = new ThumbnailImage(mData.getProfile_img(), holder.aImage);
+              thumb.execute();
+          }else{
+              holder.aImage.setVisibility(View.VISIBLE);
+              holder.aImage.setImageDrawable(getResources().getDrawable(R.drawable.icon_user));
+          }
 
-                ThumbnailImage thumb = new ThumbnailImage(thumbnail, holder.aImage);
-                thumb.execute();
 
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
+            holder.aPBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, mData.getApp_users_id(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ApplierList.this, showProfile.class);
+                    intent.putExtra("thumbnail", mData.getProfile_img());
+                    intent.putExtra("user_id", mData.getApp_users_id());
+                    startActivity(intent);
+                }
+            });
 
             return convertView;
         }

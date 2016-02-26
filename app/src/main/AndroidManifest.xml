@@ -53,8 +53,9 @@
             android:name=".KaKao.KakaoSignupActivity"
             android:label="@string/title_activity_kakao_signup"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecruitActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".RecruitActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".MypageActivity" />
         <activity
             android:name=".showMypageActivity"
@@ -77,8 +78,11 @@
         <activity
             android:name=".MasterJoinActivity"
             android:label="@string/title_activity_master_join"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ApplierList" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ApplierList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".showProfile"></activity>
     </application>
 
 </manifest>
