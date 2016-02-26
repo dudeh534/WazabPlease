@@ -2,14 +2,14 @@ package com.ourincheon.wazap;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ourincheon.wazap.Retrofit.regUser;
@@ -24,44 +24,53 @@ import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * Created by Hsue.
- */
-public class showMypageActivity extends AppCompatActivity {
-
+public class showProfile extends AppCompatActivity {
     ImageView profileImg;
     String thumbnail;
     regUser reguser;
     private TextView sName, sMajor, sUniv, sLoc, sKakao, sIntro, sExp;
+    int flag;
+    TextView pButton;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_mypage);
+        setContentView(R.layout.activity_show_profile);
 
-     //   RetrofitService retroService = new RetrofitService();
-     //   retroService.loadPage();
+        Intent intent = getIntent();
+        System.out.println(intent.getExtras().getString("thumbnail"));
+        System.out.println(intent.getExtras().getString("user_id"));
+        flag = intent.getExtras().getInt("flag");
 
-        sName = (TextView) findViewById(R.id.sName);
-        sMajor = (TextView)  findViewById(R.id.sMajor);
-        sUniv = (TextView)  findViewById(R.id.sUniv);
-        sLoc = (TextView)  findViewById(R.id.sLoc);
-        sKakao = (TextView)  findViewById(R.id.sKakao);
-        sIntro = (TextView) findViewById(R.id.sIntro);
-        sExp = (TextView) findViewById(R.id.sExp);
+        sName = (TextView) findViewById(R.id.pName);
+        sMajor = (TextView)  findViewById(R.id.pMajor);
+        sUniv = (TextView)  findViewById(R.id.pUniv);
+        sLoc = (TextView)  findViewById(R.id.pLoc);
+        sKakao = (TextView)  findViewById(R.id.pKakao);
+        sIntro = (TextView) findViewById(R.id.pIntro);
+        sExp = (TextView) findViewById(R.id.pExp);
 
-        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        profileImg = (ImageView)findViewById(R.id.sPro);
-        thumbnail = pref.getString("profile_img","");
+        profileImg = (ImageView)findViewById(R.id.pPro);
+        thumbnail = intent.getExtras().getString("thumbnail");
         ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
         thumb.execute();
+        user_id =intent.getExtras().getString("user_id");
 
-        loadPage();
+        loadPage(user_id);
 
+        pButton = (TextView) findViewById(R.id.pButton);
+        pButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag = 1;
+                Toast.makeText(showProfile.this, String.valueOf(flag), Toast.LENGTH_SHORT).show();
+                loadPage(user_id);
+            }
+        });
     }
 
-
-    void loadPage()
+    void loadPage(String user_id)
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
@@ -69,10 +78,6 @@ public class showMypageActivity extends AppCompatActivity {
                 .build();
 
         WazapService service = retrofit.create(WazapService.class);
-
-        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String user_id = pref.getString("user_id", "");
-        Log.d("SUCCESS", user_id );
 
         Call<regUser> call = service.getUserInfo(user_id);
         call.enqueue(new Callback<regUser>() {
@@ -93,12 +98,18 @@ public class showMypageActivity extends AppCompatActivity {
                     try{
                         jsonRes = new JSONObject(result);
                         JSONArray jsonArr = jsonRes.getJSONArray("data");
-                        Log.d("username",jsonArr.getJSONObject(0).getString("username"));
+                        Log.d("username", jsonArr.getJSONObject(0).getString("username"));
                         sName.setText(jsonArr.getJSONObject(0).getString("username"));
                         sMajor.setText(jsonArr.getJSONObject(0).getString("major"));
                         sUniv.setText(jsonArr.getJSONObject(0).getString("school"));
                         sLoc.setText(jsonArr.getJSONObject(0).getString("locate"));
-                        sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
+                        if(flag == 0)
+                            sKakao.setVisibility(View.INVISIBLE);
+                        else {
+                            sKakao.setVisibility(View.VISIBLE);
+                            System.out.println(flag);
+                            sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
+                        }
                         sIntro.setText(jsonArr.getJSONObject(0).getString("introduce"));
                         sExp.setText(jsonArr.getJSONObject(0).getString("exp"));
                     }catch (JSONException e)
@@ -119,27 +130,5 @@ public class showMypageActivity extends AppCompatActivity {
         });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_show_mypage, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_edit) {
-            Intent i = new Intent(showMypageActivity.this, MypageActivity.class);
-            startActivity(i);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
+

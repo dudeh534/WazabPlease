@@ -4,6 +4,7 @@ package com.ourincheon.wazap;
 import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.KaKao.infoKaKao;
 import com.ourincheon.wazap.Retrofit.Alarms;
+import com.ourincheon.wazap.Retrofit.Appliers;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.Retrofit.Contests;
 import com.ourincheon.wazap.Retrofit.UserInfo;
@@ -130,6 +131,13 @@ public interface WazapService {
     @GET("contests/list/{writer_id}")
     Call<Contests> getContestlist(
             @Path("writer_id") String writer_id,
+            @Query("access_token") String access_token
+    );
+
+    // 신청자목록 받아오기
+    @GET("contests/{contest_id}/applies")
+    Call<Appliers> getApplierlist(
+            @Path("contest_id") String contest_id,
             @Query("access_token") String access_token
     );
 }

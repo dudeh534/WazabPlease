@@ -107,6 +107,7 @@ public class FragmentPage extends Fragment {
                 return linearLayout;
 
             case 1:
+                /*
                 Log.e("position", String.valueOf(storage.getInstance().getPosition()));
                 linearLayout = (LinearLayout) inflater.inflate(R.layout.fragment_page, container, false);
                 content = (RecyclerView) linearLayout.findViewById(R.id.recyclerView);
@@ -144,7 +145,7 @@ public class FragmentPage extends Fragment {
                 linearLayout.removeAllViews();
                 linearLayout.addView(content);
                 return linearLayout;
-                /*
+                */
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
                 FrameLayout fl = new FrameLayout(getActivity());
@@ -163,7 +164,7 @@ public class FragmentPage extends Fragment {
 
                 fl.addView(v);
                 return fl;
-                */
+
             default:
                 return null;
         }
