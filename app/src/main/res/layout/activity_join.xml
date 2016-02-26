@@ -92,7 +92,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/lineardivider"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -129,7 +129,7 @@
                     android:layout_height="10dp"
                     android:id="@+id/imageView5"
                     android:layout_marginLeft="12.67dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/kakaotalk_icon"/>
 
                 <TextView
@@ -152,92 +152,31 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="88dp"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공모전 명칭"
-                android:id="@+id/textView18"
-                android:layout_gravity="left|center_horizontal"
-                android:layout_marginTop="26.33dp"
-                android:textSize="13dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:id="@+id/textView19"
-                android:layout_gravity="left|center_horizontal"
-                android:layout_marginTop="18.67dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="모집인원"
-                android:id="@+id/textView20"
-                android:layout_gravity="left|center_horizontal"
-                android:layout_marginTop="18.67dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="팀원리스트"
-                android:id="@+id/textView21"
-                android:layout_gravity="left|center_horizontal"
-                android:layout_marginTop="18.67dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="신청인원"
-                android:id="@+id/textView25"
-                android:layout_gravity="left|center_horizontal"
-                android:layout_marginTop="18.67dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="레드닷 어워즈"
-                android:id="@+id/jHost"
-                android:layout_marginTop="26.33dp"
-                android:textSize="14dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView6" />
+                    android:text="공모전 명칭"
+                    android:id="@+id/textView18"
+                    android:layout_marginTop="26.33dp"
+                    android:textSize="13dp" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView7" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView8" />
+                    android:text="레드닷 어워즈"
+                    android:id="@+id/jHost"
+                    android:layout_marginTop="26.33dp"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="50dp" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="디자인"
-                android:id="@+id/jCate"
-                android:layout_marginTop="18.67dp"
-                android:textSize="14dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -245,66 +184,109 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView9" />
+                    android:text="카테고리"
+                    android:id="@+id/textView19"
+                    android:layout_marginTop="18.67dp" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView10" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView11" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView12" />
+                    android:text="디자인"
+                    android:id="@+id/jCate"
+                    android:layout_marginTop="18.67dp"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="60dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:id="@+id/jMem"
-                    android:layout_marginTop="18.67dp"
-                    android:textSize="14dp" />
+                    android:text="모집인원"
+                    android:id="@+id/textView20"
+                    android:layout_marginTop="18.67dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" / 3"
-                    android:id="@+id/jRec"
-                    android:layout_marginTop="18.67dp"
-                    android:textSize="14dp" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:id="@+id/jMem"
+                        android:layout_marginTop="18.67dp"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="60dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" / 3"
+                        android:id="@+id/jRec"
+                        android:layout_marginTop="18.67dp"
+                        android:textSize="14dp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="홍수민, 채영도"
-                android:id="@+id/textView33"
-                android:layout_marginTop="18.67dp"
-                android:textSize="14dp" />
+                android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="팀원리스트"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="18.67dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="홍수민, 채영도"
+                    android:id="@+id/textView33"
+                    android:layout_marginTop="18.67dp"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="45dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="27"
-                android:id="@+id/jApply"
-                android:layout_marginTop="18.67dp"
-                android:textSize="14dp" />
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="신청인원"
+                    android:id="@+id/textView25"
+                    android:layout_marginTop="18.67dp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="27"
+                        android:id="@+id/jApply"
+                        android:layout_marginTop="18.67dp"
+                        android:textSize="14dp"
+                    android:layout_marginLeft="60dp" />
+            </LinearLayout>
 
         </LinearLayout>
+
+
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -363,8 +345,6 @@
         android:layout_height="41.33dp"
         android:background="#0056ff"
         android:text="신청하기"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:gravity="center"
         android:textSize="20dp"
         android:layout_alignParentBottom="true"

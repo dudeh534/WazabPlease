@@ -256,8 +256,6 @@
         android:layout_height="41.33dp"
         android:background="#0056ff"
         android:text="모집글 올리기"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:gravity="center"
         android:textSize="20dp"
         android:id="@+id/jButton"
