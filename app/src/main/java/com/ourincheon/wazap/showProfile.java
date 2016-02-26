@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.Retrofit.regUser;
 
 import org.json.JSONArray;
@@ -64,19 +65,67 @@ public class showProfile extends AppCompatActivity {
         loadPage(user_id);
 
         pButton = (TextView) findViewById(R.id.pButton);
+        if(flag == 0)
+            pButton.setText("수락하기");
+        else
+            pButton.setText("수락취소");
         pButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flag = 1;
+
                 Toast.makeText(showProfile.this, String.valueOf(flag), Toast.LENGTH_SHORT).show();
-                loadPage(user_id);
+                changeMem();
+
             }
         });
     }
 
     void changeMem()
     {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://come.n.get.us.to/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        WazapService service = retrofit.create(WazapService.class);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String access_token = pref.getString("access_token", "");
+
+        Call<LinkedTreeMap> call = service.changeMember(contest_id, applies_id, access_token);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Response<LinkedTreeMap> response) {
+                if (response.isSuccess() && response.body() != null) {
+
+                    LinkedTreeMap temp = response.body();
+
+                    boolean result = Boolean.parseBoolean(temp.get("result").toString());
+                    String msg = temp.get("msg").toString();
+
+                        if (result) {
+                            Log.d("저장 결과: ", msg);
+                            Toast.makeText(getApplicationContext(), "멤버 변경 되었습니다.", Toast.LENGTH_SHORT).show();
+                            loadPage(user_id);
+                        } else {
+                            Log.d("저장 실패: ", msg);
+                            Toast.makeText(getApplicationContext(), "멤버 변경 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        }
+
+                } else if (response.isSuccess()) {
+                    Log.d("Response Body isNull", response.message());
+                } else {
+                    Log.d("Response Error Body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("Error", t.getMessage());
+            }
+        });
     }
 
     void loadPage(String user_id)
