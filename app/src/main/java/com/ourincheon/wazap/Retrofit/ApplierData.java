@@ -5,7 +5,7 @@ package com.ourincheon.wazap.Retrofit;
  */
 public class ApplierData {
     String postdate;
-    int appliers_id;
+    int applies_id;
     String app_users_id;
     int is_check;
     String username;
@@ -18,12 +18,12 @@ public class ApplierData {
         this.postdate = postdate;
     }
 
-    public int getAppliers_id() {
-        return appliers_id;
+    public int getApplies_id() {
+        return applies_id;
     }
 
-    public void setAppliers_id(int appliers_id) {
-        this.appliers_id = appliers_id;
+    public void setApplies_id(int applies_id) {
+        this.applies_id = applies_id;
     }
 
     public String getApp_users_id() {

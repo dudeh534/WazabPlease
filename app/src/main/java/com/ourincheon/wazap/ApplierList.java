@@ -42,6 +42,7 @@ public class ApplierList extends AppCompatActivity {
     private ListViewAdapter mAdapter = null;
     Appliers appliers;
     ArrayList<ApplierData> applier_list;
+    String num;
     int count;
 
     @Override
@@ -52,7 +53,7 @@ public class ApplierList extends AppCompatActivity {
 
         Intent intent = getIntent();
         System.out.println(intent.getExtras().getString("id"));
-        String num = intent.getExtras().getString("id");
+        num = intent.getExtras().getString("id");
 
         mListView = (ListView) findViewById(R.id.applierlistView);
 
@@ -67,8 +68,6 @@ public class ApplierList extends AppCompatActivity {
 
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
-
-
 
     }
 
@@ -105,7 +104,8 @@ public class ApplierList extends AppCompatActivity {
                             mAdapter.addItem(jsonArr.getJSONObject(i).getString("profile_img"),
                                     jsonArr.getJSONObject(i).getString("username"),
                                     jsonArr.getJSONObject(i).getString("app_users_id"),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("applies_id")),
+                                            Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")));
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -160,7 +160,7 @@ public class ApplierList extends AppCompatActivity {
             return position;
         }
 
-        public void addItem(String img, String name,String id, int is_check ){
+        public void addItem(String img, String name,String id,int applies, int is_check ){
             ApplierData addInfo = null;
             addInfo = new ApplierData();
             try {
@@ -173,6 +173,7 @@ public class ApplierList extends AppCompatActivity {
             //addInfo.setPeriod(parts[0]);
             addInfo.setUsername(name);
             addInfo.setApp_users_id(id);
+            addInfo.setApplies_id(applies);
             addInfo.setIs_check(is_check);
 
             mListData.add(addInfo);
@@ -233,6 +234,8 @@ public class ApplierList extends AppCompatActivity {
                     Intent intent = new Intent(ApplierList.this, showProfile.class);
                     intent.putExtra("thumbnail", mData.getProfile_img());
                     intent.putExtra("user_id", mData.getApp_users_id());
+                    intent.putExtra("applies_id", String.valueOf(mData.getApplies_id()));
+                    intent.putExtra("contest_id", num);
                     intent.putExtra("flag", mData.getIs_check());
                     startActivity(intent);
                 }
