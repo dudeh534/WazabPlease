@@ -14,9 +14,11 @@
 
         <Button
             android:id="@+id/libray_btn_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#0057ff" />
+            android:layout_width="15dp"
+            android:layout_height="24dp"
+            android:background="@drawable/detail_btn_back_white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="55dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -26,7 +28,8 @@
             android:text="신청목록"
             android:textColor="#ffffff"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_gravity="center" />
 
         <Button
             android:layout_width="wrap_content"
