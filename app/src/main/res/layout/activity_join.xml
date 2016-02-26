@@ -205,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="레드닷 어워즈"
-                android:id="@+id/textView22"
+                android:id="@+id/jHost"
                 android:layout_marginTop="26.33dp"
                 android:textSize="14dp" />
 

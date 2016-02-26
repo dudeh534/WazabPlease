@@ -37,7 +37,7 @@ public class MasterJoinActivity extends AppCompatActivity {
 
     reqContest contest;
     ContestData contestData;
-    TextView jTitle,jButton,jmList,jCate,jApply,jRec,jName,jCover,jMem,jDate;
+    TextView jTitle,jButton,jmList,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
     Button eBtn;
     String access_token,num;
     AlertDialog.Builder ad,deleteD;
@@ -58,6 +58,7 @@ public class MasterJoinActivity extends AppCompatActivity {
         jCover = (TextView) findViewById(R.id.jmCover);
         jMem = (TextView) findViewById(R.id.jmMem);
         jDate = (TextView) findViewById(R.id.jmDate);
+        jHost = (TextView) findViewById(R.id.jmHost);
 
         Intent intent = getIntent();
         num =  intent.getExtras().getString("id");
@@ -258,6 +259,7 @@ public class MasterJoinActivity extends AppCompatActivity {
                     jRec.setText(" / "+String.valueOf(contest.getData().getRecruitment()));
                     jName.setText(contest.getData().getUsername());
                     jCover.setText(contest.getData().getCover());
+                    jHost.setText(contest.getData().getHosts());
 
                     String[] parts = contest.getData().getPeriod().split("T");
                     Dday day = new Dday();
@@ -270,6 +272,8 @@ public class MasterJoinActivity extends AppCompatActivity {
                     contestData.setRecruitment(contest.getData().getRecruitment());
                     contestData.setUsername(contest.getData().getUsername());
                     contestData.setCover(contest.getData().getCover());
+                    contestData.setHosts(contest.getData().getHosts());
+                    contestData.setContests_id(contest.getData().getContests_id());
 
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
@@ -310,15 +314,3 @@ public class MasterJoinActivity extends AppCompatActivity {
     }
 }
 
-class Access
-{
-    String access_token;
-
-    public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
-    }
-}

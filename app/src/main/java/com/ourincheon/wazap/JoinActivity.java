@@ -34,7 +34,7 @@ import retrofit2.Retrofit;
 public class JoinActivity extends AppCompatActivity {
 
     reqContest contest;
-    TextView jTitle,jButton,jCate,jApply,jRec,jName,jCover,jMem,jDate;
+    TextView jTitle,jButton,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
     String access_token,num;
     Button jPick;
 
@@ -51,6 +51,7 @@ public class JoinActivity extends AppCompatActivity {
         jCover = (TextView) findViewById(R.id.jCover);
         jMem = (TextView) findViewById(R.id.jMem);
         jDate = (TextView) findViewById(R.id.jDate);
+        jHost = (TextView) findViewById(R.id.jHost);
 
         Intent intent = getIntent();
         num =  intent.getExtras().getString("id");
@@ -202,6 +203,7 @@ public class JoinActivity extends AppCompatActivity {
                     jRec.setText(" / "+String.valueOf(contest.getData().getRecruitment()));
                     jName.setText(contest.getData().getUsername());
                     jCover.setText(contest.getData().getCover());
+                    jHost.setText(contest.getData().getCover());
 
                     String[] parts = contest.getData().getPeriod().split("T");
                     Dday day = new Dday();

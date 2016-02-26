@@ -47,6 +47,7 @@ public class RecruitActivity extends AppCompatActivity {
     ContestData con;
     ContestInfo contest2;
     int mode,contest_id;
+    String access_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class RecruitActivity extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         nickname.setText(pref.getString("name",""));
-        String access_token = pref.getString("access_token", "");
+        access_token = pref.getString("access_token", "");
         contest2 = new ContestInfo();
         contest2.setAccess_token(access_token);
 
@@ -117,6 +118,8 @@ public class RecruitActivity extends AppCompatActivity {
                 .build();
         WazapService service = client.create(WazapService.class);
 
+        System.out.println(String.valueOf(contest_id));
+        System.out.println(contest.getAccess_token());
         Call<LinkedTreeMap> call = service.editContest(String.valueOf(contest_id), contest);
         call.enqueue(new Callback<LinkedTreeMap>() {
             @Override
