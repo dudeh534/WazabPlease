@@ -29,7 +29,8 @@
                     android:textSize="11dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="12.33dp"
-                    android:textColor="#0057ff" />
+                    android:textColor="#0057ff"
+                    android:background="@drawable/detail_profile_button"/>
 
                 <TextView
                     android:layout_width="wrap_content"

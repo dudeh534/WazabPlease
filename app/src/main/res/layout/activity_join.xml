@@ -5,7 +5,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,25 +12,13 @@
         android:padding="1dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
-=======
-
-    <Button
-        android:text="찜하기"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jPick"
-        android:layout_alignTop="@+id/jTitle"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
->>>>>>> d4d3757c8c452e0414c146e29467506c7a5f372f
-
         <Button
             android:id="@+id/libray_btn_toggle"
             android:layout_width="15dp"
             android:layout_height="24dp"
             android:background="@drawable/detail_btn_back"
             android:layout_marginLeft="16.47dp"
-            android:layout_marginBottom="18.67dp" />
+            android:layout_marginTop="13dp" />
 
         <TextView
             android:layout_width="0dp"
@@ -43,13 +30,18 @@
             android:textStyle="bold" />
 
         <Button
-            android:text="찜하기"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="♡"
+            android:layout_width="20.67dp"
+            android:layout_height="19.33dp"
             android:id="@+id/jPick"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="#ffffff"
+            android:layout_marginTop="13dp"
+            android:textSize="20dp"
+            android:textColor="#0067ff"
+            android:layout_marginRight="15.33dp" />
 
     </LinearLayout>
 
@@ -106,92 +98,115 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_width="107dp"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView16"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView17"
-                android:layout_gravity="center_horizontal" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
                 android:id="@+id/imageView4"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/detail_photobg"/>
+                android:background="@drawable/detail_photobg"
+                android:layout_marginTop="29.33dp"
+                android:layout_marginLeft="18.67dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="변요한"
+                android:id="@+id/textView17"
+                android:layout_marginLeft="28.33dp"
+                android:layout_marginTop="13dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:id="@+id/imageView5"
+                    android:layout_marginLeft="12.67dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/kakaotalk_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dudeh534"
+                    android:id="@+id/textView16"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="65.67dp"
+                android:layout_height="20dp"
+                android:text="상세프로필"
+                android:id="@+id/textView31"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="23.33dp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_width="104dp"
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="공모전 명칭"
                 android:id="@+id/textView18"
-                android:layout_gravity="left|center_horizontal" />
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginTop="26.33dp"
+                android:textSize="13dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="카테고리"
                 android:id="@+id/textView19"
-                android:layout_gravity="left|center_horizontal" />
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginTop="18.67dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모집인원"
                 android:id="@+id/textView20"
-                android:layout_gravity="left|center_horizontal" />
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginTop="18.67dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="팀원리스트"
                 android:id="@+id/textView21"
-                android:layout_gravity="left|center_horizontal" />
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginTop="18.67dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="신청인원"
                 android:id="@+id/textView25"
-                android:layout_gravity="left|center_horizontal" />
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginTop="18.67dp" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="레드닷 어워즈"
                 android:id="@+id/textView22"
-                android:layout_gravity="center_horizontal" />
+                android:layout_marginTop="26.33dp"
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -217,9 +232,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="디자인"
                 android:id="@+id/textView23"
-                android:layout_gravity="center_horizontal" />
+                android:layout_marginTop="18.67dp"
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -248,12 +264,43 @@
                     android:id="@+id/imageView12" />
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:id="@+id/textView24"
+                    android:layout_marginTop="18.67dp"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / 3"
+                    android:id="@+id/textView35"
+                    android:layout_marginTop="18.67dp"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView24"
-                android:layout_gravity="center_horizontal" />
+                android:text="홍수민, 채영도"
+                android:id="@+id/textView33"
+                android:layout_marginTop="18.67dp"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27"
+                android:id="@+id/textView34"
+                android:layout_marginTop="18.67dp"
+                android:textSize="14dp" />
 
         </LinearLayout>
     </LinearLayout>

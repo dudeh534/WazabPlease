@@ -3,12 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/wazab.iml" filepath="$PROJECT_DIR$/wazab.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/hoo.iml" filepath="$PROJECT_DIR$/hoo.iml" />
->>>>>>> d4d3757c8c452e0414c146e29467506c7a5f372f
     </modules>
   </component>
 </project>
-
