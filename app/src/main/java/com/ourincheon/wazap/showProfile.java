@@ -31,7 +31,7 @@ public class showProfile extends AppCompatActivity {
     private TextView sName, sMajor, sUniv, sLoc, sKakao, sIntro, sExp;
     int flag;
     TextView pButton;
-    String user_id;
+    String user_id,contest_id,applies_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,13 @@ public class showProfile extends AppCompatActivity {
         setContentView(R.layout.activity_show_profile);
 
         Intent intent = getIntent();
-        System.out.println(intent.getExtras().getString("thumbnail"));
-        System.out.println(intent.getExtras().getString("user_id"));
+
+        System.out.println(intent.getExtras().getString("applies_id"));
+        System.out.println(intent.getExtras().getString("contest_id"));
         flag = intent.getExtras().getInt("flag");
+        user_id =intent.getExtras().getString("user_id");
+        contest_id =intent.getExtras().getString("contest_id");
+        applies_id =intent.getExtras().getString("applies_id");
 
         sName = (TextView) findViewById(R.id.pName);
         sMajor = (TextView)  findViewById(R.id.pMajor);
@@ -55,7 +59,7 @@ public class showProfile extends AppCompatActivity {
         thumbnail = intent.getExtras().getString("thumbnail");
         ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
         thumb.execute();
-        user_id =intent.getExtras().getString("user_id");
+
 
         loadPage(user_id);
 
@@ -68,6 +72,11 @@ public class showProfile extends AppCompatActivity {
                 loadPage(user_id);
             }
         });
+    }
+
+    void changeMem()
+    {
+
     }
 
     void loadPage(String user_id)
