@@ -41,10 +41,11 @@ public class ApplyList extends AppCompatActivity {
     private ListView mListView = null;
     private ListView mListView2 = null;
     private ListViewAdapter mAdapter = null;
+    private Not_ListViewAdapter  not_listAdapter = null;
     Contests applies;
     ArrayList<ContestData> apply_list;
     int count;
-    not_ListAdapter not_listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,8 @@ public class ApplyList extends AppCompatActivity {
 
         scrollView = (ScrollView) findViewById(R.id.scrollView1);
         //ListView listView1 = (ListView) findViewById(R.id.listView1);
-        not_listAdapter = new not_ListAdapter(this, R.layout.not_require_item);
+        //not_listAdapter = new Not_ListAdapter(this, R.layout.not_require_item);
+
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         String access_token = pref.getString("access_token", "");
 
@@ -73,6 +75,8 @@ public class ApplyList extends AppCompatActivity {
 
 
         mAdapter = new ListViewAdapter(this);
+        not_listAdapter = new Not_ListViewAdapter(this);
+
         mListView.setAdapter(mAdapter);
         mListView2.setAdapter(not_listAdapter);
 
@@ -134,19 +138,32 @@ public class ApplyList extends AppCompatActivity {
                         for (int i = 0; i < count; i++) {
                             System.out.println(Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")));
                             System.out.println(jsonArr.getJSONObject(i).getString("recruitment"));
-                            mAdapter.addItem(jsonArr.getJSONObject(i).getString("title"),
-                                    jsonArr.getJSONObject(i).getString("period"),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("applies_id")),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("appliers")),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("contests_id")),
-                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
+                            System.out.println(jsonArr.getJSONObject(i).getString("is_finish"));
+                            if(Integer.parseInt(jsonArr.getJSONObject(i).getString("is_finish")) == 0) {
+
+                                mAdapter.addItem(jsonArr.getJSONObject(i).getString("title"),
+                                        jsonArr.getJSONObject(i).getString("period"),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("applies_id")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("appliers")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("contests_id")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
+                            }else{
+                                not_listAdapter.addItem(jsonArr.getJSONObject(i).getString("title"),
+                                        jsonArr.getJSONObject(i).getString("period"),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("applies_id")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("appliers")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("contests_id")),
+                                        Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
+                            }
                         }
 
 
 
                         mListView.setAdapter(mAdapter);
                         mListView2.setAdapter(not_listAdapter);
+
                         setListViewHeightBasedOnChildren(mListView);
                         setListViewHeightBasedOnChildren(mListView2);
                     } catch (JSONException e) {
@@ -267,6 +284,97 @@ public class ApplyList extends AppCompatActivity {
         }
     }
 
+    private class Not_ListViewAdapter extends BaseAdapter {
+        private Context mContext = null;
+        private ArrayList<ContestData> mListData = new ArrayList<ContestData>();
+
+        public Not_ListViewAdapter(Context mContext) {
+            super();
+            this.mContext = mContext;
+        }
+
+        @Override
+        public int getCount() {
+            return mListData.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mListData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public void addItem(String title, String period, int apply_id, int apply, int recruit, int id, int member){
+            ContestData addInfo = null;
+            addInfo = new ContestData();
+            String[] parts = period.split("T");
+            addInfo.setPeriod(parts[0]);
+            addInfo.setApplies_id(apply_id);
+            addInfo.setAppliers(apply);
+            addInfo.setRecruitment(recruit);
+            addInfo.setContests_id(id);
+            addInfo.setMembers(member);
+            addInfo.setTitle(title);
+
+            System.out.println("----------------33333333   " + member);
+            System.out.println("-------------------------"+addInfo.getMembers());
+            mListData.add(addInfo);
+
+        }
+
+        public void remove(int position){
+            mListData.remove(position);
+            dataChange();
+        }
+
+        public void dataChange(){
+            mAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder();
+
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.not_require_item, null);
+
+                holder.Dday = (TextView) convertView.findViewById(R.id.dday);
+                holder.Title = (TextView) convertView.findViewById(R.id.title);
+                holder.Cate = (TextView) convertView.findViewById(R.id.cate);
+                holder.Man = (TextView) convertView.findViewById(R.id.man);
+                holder.Member = (TextView) convertView.findViewById(R.id.member);
+                convertView.setTag(holder);
+            }else{
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            ContestData mData = mListData.get(position);
+
+            // System.out.println(mData.getAppliers());
+
+            Dday day = new Dday();
+            // holder.Dday.setText("D "+day.dday(mData.getPeriod()));
+
+            holder.Title.setText(mData.getTitle());
+
+            holder.Cate.setText("모집인원 " + String.valueOf(mData.getRecruitment()) + "명");
+
+            holder.Man.setText("신청인원 "+mData.getAppliers() + "명");
+
+            holder.Member.setText("확정인원 " + mData.getMembers() + "명");
+
+            return convertView;
+        }
+    }
+
+
+/*
     public class not_ListAdapter extends ArrayAdapter<String> {
         private final Activity context;
         TextView dday, title, cate, man;
@@ -284,7 +392,6 @@ public class ApplyList extends AppCompatActivity {
             String access_token = pref.getString("access_token", "");
             //loadPage(access_token);
         }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = context.getLayoutInflater();
@@ -303,7 +410,7 @@ public class ApplyList extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            return cont_list.size();
         }
-    }
+    }*/
 }

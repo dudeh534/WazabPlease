@@ -65,7 +65,7 @@ public class MasterJoinActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                     endContest(num, access_token);
+                     endContest();
                     }
                 }).setNegativeButton("취소",
                 new DialogInterface.OnClickListener() {
@@ -177,7 +177,7 @@ public class MasterJoinActivity extends AppCompatActivity {
         });
     }
 
-    void endContest(String num, String access_token)
+    void endContest( )
     {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
@@ -186,11 +186,9 @@ public class MasterJoinActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-------------------"+access_token);
-        Access access = new Access();
-        access.setAccess_token(access_token);
+        System.out.println("-------------------"+num);
 
-        Call<LinkedTreeMap> call = service.finishContest(num, access);
+        Call<LinkedTreeMap> call = service.finishContest(num, access_token);
         call.enqueue(new Callback<LinkedTreeMap>() {
             @Override
             public void onResponse(Response<LinkedTreeMap> response) {
