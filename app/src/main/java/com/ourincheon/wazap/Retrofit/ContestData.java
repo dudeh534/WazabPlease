@@ -23,6 +23,15 @@ public class ContestData  implements Serializable {
     int appliers;
     int clips;
     int views;
+    int is_finish;
+
+    public int getIs_finish() {
+        return is_finish;
+    }
+
+    public void setIs_finish(int is_finish) {
+        this.is_finish = is_finish;
+    }
 
     public int getApplies_id() {
         return applies_id;

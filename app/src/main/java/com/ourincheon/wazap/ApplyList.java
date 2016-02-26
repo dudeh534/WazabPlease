@@ -143,6 +143,8 @@ public class ApplyList extends AppCompatActivity {
                                     Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
                         }
 
+
+
                         mListView.setAdapter(mAdapter);
                         mListView2.setAdapter(not_listAdapter);
                         setListViewHeightBasedOnChildren(mListView);

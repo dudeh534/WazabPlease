@@ -12,12 +12,24 @@ public class AlarmData {
 
 
     public Drawable mIcon;
+    String profile_img;
+
+
     String username;
     int alram_id;
     String msg;
     String msg_url;
     String alramdate;
     int is_check;
+
+
+    public String getProfile_img() {
+        return profile_img;
+    }
+
+    public void setProfile_img(String profile_img) {
+        this.profile_img = profile_img;
+    }
 
     public String getUsername() {
         return username;
