@@ -48,7 +48,7 @@ public class ClipList extends AppCompatActivity {
     int count, posi;
     String[] id_list;
     AlertDialog dialog;
-    String access_token;
+    String access_token,contest_id;
 
 
     @Override
@@ -100,6 +100,8 @@ public class ClipList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ContestData mData = mAdapter.mListData.get(position);
                 //Toast.makeText(ContestList.this, mData.msg_url, Toast.LENGTH_SHORT).show();
+                contest_id = String.valueOf(mData.getContests_id());
+                applyContest( contest_id, access_token);
             }
         });
 
@@ -131,7 +133,7 @@ public class ClipList extends AppCompatActivity {
                     if (result) {
                         Log.d("저장 결과: ", msg);
                         Toast.makeText(getApplicationContext(), "신청되었습니다.", Toast.LENGTH_SHORT).show();
-
+                        //deleteClip(contest_id);
                     } else {
                         Log.d("저장 실패: ", msg);
                         Toast.makeText(getApplicationContext(), "신청 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
@@ -160,7 +162,6 @@ public class ClipList extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-------------------"+access_token);
 
         Call<LinkedTreeMap> call = service.delClip(contest_id, access_token);
         call.enqueue(new Callback<LinkedTreeMap>() {

@@ -1,6 +1,7 @@
 package com.ourincheon.wazap;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,18 @@ public class ContestList extends AppCompatActivity {
             }
         });
 */
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ContestData mData = mAdapter.mListData.get(position);
+                // Toast.makeText(AlarmList.this, mData.msg_url, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ContestList.this, JoinActivity.class);
+                intent.putExtra("id",String.valueOf(mData.getContests_id()));
+                startActivity(intent);
+            }
+        });
+
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
