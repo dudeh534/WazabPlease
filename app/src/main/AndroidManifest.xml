@@ -78,7 +78,7 @@
             android:name=".MasterJoinActivity"
             android:label="@string/title_activity_master_join"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".ApplierList"></activity>
+        <activity android:name=".ApplierList" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
