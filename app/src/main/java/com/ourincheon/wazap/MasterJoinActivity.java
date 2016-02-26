@@ -40,7 +40,7 @@ public class MasterJoinActivity extends AppCompatActivity {
     TextView jTitle,jButton;
     String access_token,num;
     AlertDialog.Builder ad,deleteD;
-    Button eBtn;
+    Button eBtn,jmList;
     CharSequence list[] = {"수정하기", "삭제하기","취소"};
 
     @Override
@@ -80,7 +80,7 @@ public class MasterJoinActivity extends AppCompatActivity {
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog alert =  deleteD.create();
+                AlertDialog alert = deleteD.create();
                 alert.show();
             }
         });
@@ -90,11 +90,11 @@ public class MasterJoinActivity extends AppCompatActivity {
         ad.setItems(list, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which == 0)
-                   editCont();
-                if(which == 1)
+                if (which == 0)
+                    editCont();
+                if (which == 1)
                     delCont();
-                if(which == 2)
+                if (which == 2)
                     dialog.cancel();
             }
         });
@@ -108,6 +108,17 @@ public class MasterJoinActivity extends AppCompatActivity {
             }
         });
 
+        //신청자리스트보기 버튼
+        jmList = (Button) findViewById(R.id.jmList);
+        jmList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MasterJoinActivity.this, ApplierList.class);
+                intent.putExtra("id", num);
+                startActivity(intent);
+
+            }
+        });
     }
 
     void editCont()
