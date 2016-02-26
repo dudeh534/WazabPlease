@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, RecruitActivity.class);
+                Intent i = new Intent(MainActivity.this, Recuiting_Activity_new.class);
                 i.putExtra("edit", 0);
                 //i.putExtra("KakaoInfo",kakao);
                 //i.putExtra("Nickname",nick);

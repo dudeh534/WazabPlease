@@ -83,6 +83,9 @@
             android:name=".ApplierList"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".showProfile"></activity>
+
+        <activity android:name=".Recuiting_Activity_new"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>
