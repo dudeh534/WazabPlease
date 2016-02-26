@@ -1,16 +1,19 @@
 package com.ourincheon.wazap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SyncStatusObserver;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -41,7 +44,7 @@ public class ApplyList extends AppCompatActivity {
     Contests applies;
     ArrayList<ContestData> apply_list;
     int count;
-
+    not_ListAdapter not_listAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,7 @@ public class ApplyList extends AppCompatActivity {
 
         scrollView = (ScrollView) findViewById(R.id.scrollView1);
         //ListView listView1 = (ListView) findViewById(R.id.listView1);
-
+        not_listAdapter = new not_ListAdapter(this, R.layout.not_require_item);
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         String access_token = pref.getString("access_token", "");
 
@@ -64,14 +67,14 @@ public class ApplyList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ContestData mData = mAdapter.mListData.get(position);
-                Toast.makeText(ApplyList.this, "******"+mData.getApplies_id(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApplyList.this, "******" + mData.getApplies_id(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
-        mListView2.setAdapter(mAdapter);
+        mListView2.setAdapter(not_listAdapter);
 
 
 
@@ -141,7 +144,7 @@ public class ApplyList extends AppCompatActivity {
                         }
 
                         mListView.setAdapter(mAdapter);
-                        mListView2.setAdapter(mAdapter);
+                        mListView2.setAdapter(not_listAdapter);
                         setListViewHeightBasedOnChildren(mListView);
                         setListViewHeightBasedOnChildren(mListView2);
                     } catch (JSONException e) {
@@ -248,7 +251,7 @@ public class ApplyList extends AppCompatActivity {
             // System.out.println(mData.getAppliers());
 
             Dday day = new Dday();
-            holder.Dday.setText("D - "+day.dday(mData.getPeriod()));
+            holder.Dday.setText("D "+day.dday(mData.getPeriod()));
 
             holder.Title.setText(mData.getTitle());
 
@@ -259,6 +262,46 @@ public class ApplyList extends AppCompatActivity {
             holder.Member.setText("확정인원 " + mData.getMembers() + "명");
 
             return convertView;
+        }
+    }
+
+    public class not_ListAdapter extends ArrayAdapter<String> {
+        private final Activity context;
+        TextView dday, title, cate, man;
+        ImageView small;
+        Button bt;
+        Contests contest;
+        ArrayList<ContestData> cont_list;
+        int count;
+
+        public not_ListAdapter(Activity context, int resource) {
+            super(context, resource);
+            this.context = context;
+            //list = new ArrayList<Contests>();
+            SharedPreferences pref = context.getSharedPreferences("pref", context.MODE_PRIVATE);
+            String access_token = pref.getString("access_token", "");
+            //loadPage(access_token);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            View rowView = inflater.inflate(R.layout.not_require_item, null, true);
+            dday = (TextView) rowView.findViewById(R.id.dday);
+            title = (TextView) rowView.findViewById(R.id.title);
+            cate = (TextView) rowView.findViewById(R.id.cate);
+            man = (TextView) rowView.findViewById(R.id.man);
+            bt = (Button) rowView.findViewById(R.id.require);
+
+            title.setText("[서울] 한화생명 보험 아이디어 공모전");
+            cate.setText("영상/ucc/사진");
+            man.setText("모집인원 5명");
+            return rowView;
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
         }
     }
 }

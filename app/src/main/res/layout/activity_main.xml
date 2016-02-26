@@ -13,7 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:visibility="visible">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -57,6 +58,47 @@
                         android:background="#ffffff"/>
                 </android.support.design.widget.AppBarLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/xml_border"
+                    android:layout_marginRight="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카테고리"
+                        android:id="@+id/textView38"
+                        android:textColor="#FFD2D2D2"
+                        android:layout_marginLeft="50dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"
+                        android:id="@+id/divider11"
+                        android:textColor="#FFD2D2D2"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView39"
+                        android:layout_marginLeft="65dp"
+                        android:textColor="#FFD2D2D2"/>
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner"
+                        android:layout_marginLeft="10dp" />
+                </LinearLayout>
+
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewpager"
                     android:layout_width="match_parent"
@@ -67,11 +109,12 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="62dp"
+            android:layout_height="63dp"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email" />
+            android:layout_marginRight="23.33dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/writing_icon_noncircle" />
 
     </android.support.design.widget.CoordinatorLayout>
 

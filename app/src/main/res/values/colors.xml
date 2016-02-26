@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#fd3d01</color>
     <color name="colorPrimaryDark">#fd3d01</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#0057ff</color>
 
 
     <color name="title_background">#1c1c1c</color>
@@ -19,4 +19,5 @@
     <color name="color7">#000000</color>
     <color name="color8">#4A4A4C</color>
     <color name="color9">#BDD1DC</color>
+    <color name="wazab">#0057ff</color>
 </resources>

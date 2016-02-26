@@ -21,8 +21,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ourincheon.wazap.Require.RequireList;
-
 /*
 * TODO - TABLayout RecyclerView insert
 * TODO - ListView Subpage*/
@@ -42,12 +40,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         Drawable drawable = getResources().getDrawable(R.drawable.detail_title_banner);
         toolbar.setBackground(drawable);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RecruitActivity.class);
-                i.putExtra("edit",0);
+                i.putExtra("edit", 0);
                 //i.putExtra("KakaoInfo",kakao);
                 //i.putExtra("Nickname",nick);
                 startActivity(i);
@@ -61,16 +61,17 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        toolbar.setNavigationIcon(R.drawable.list_icon);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentPage(), "모집글(메인)");
-        adapter.addFragment(new FragmentPage(), "주간차트");
+        adapter.addFragment(new FragmentPage(), "팀원모집");
+        adapter.addFragment(new FragmentPage(), "공모전리스트");
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.GRAY, Color.BLACK);
-        tabLayout.setSelectedTabIndicatorColor(Color.GRAY);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.wazab));
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
