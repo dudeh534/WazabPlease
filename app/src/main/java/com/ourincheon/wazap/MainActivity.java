@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         ThumbnailImage thumb = new ThumbnailImage(thumbnail,profileImg);
         thumb.execute();
 
-        TextView profileBtn = (TextView)header.findViewById(R.id.showProBtn);
+        ImageView profileBtn = (ImageView)header.findViewById(R.id.showProBtn);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
