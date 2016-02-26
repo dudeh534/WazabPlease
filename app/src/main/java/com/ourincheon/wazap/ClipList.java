@@ -94,11 +94,63 @@ public class ClipList extends AppCompatActivity {
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ContestData mData = mAdapter.mListData.get(position);
+                //Toast.makeText(ContestList.this, mData.msg_url, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
     }
 
+    void applyContest(String num, String access_token) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://come.n.get.us.to/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        WazapService service = retrofit.create(WazapService.class);
+
+        System.out.println("-------------------" + access_token);
+        Call<LinkedTreeMap> call = service.applyContests(num, access_token);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Response<LinkedTreeMap> response) {
+                if (response.isSuccess() && response.body() != null) {
+
+                    LinkedTreeMap temp = response.body();
+
+                    boolean result = Boolean.parseBoolean(temp.get("result").toString());
+                    String msg = temp.get("msg").toString();
+
+                    if (result) {
+                        Log.d("저장 결과: ", msg);
+                        Toast.makeText(getApplicationContext(), "신청되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Log.d("저장 실패: ", msg);
+                        Toast.makeText(getApplicationContext(), "신청 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (response.isSuccess()) {
+                    Log.d("Response Body isNull", response.message());
+                } else {
+                    Log.d("Response Error Body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("Error", t.getMessage());
+            }
+        });
+    }
     void deleteClip(String contest_id)
     {
         Retrofit retrofit = new Retrofit.Builder()
