@@ -1,5 +1,6 @@
 package com.ourincheon.wazap;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -45,9 +46,11 @@ public class FragmentPage extends Fragment {
     private DataStorage storage = new DataStorage();
     private int position;
     Contests contest;
-
+    RecyclerAdapter rec;
     List<Recycler_item> items;
     Recycler_item[] item;
+    String[] id_list,writer_list;
+    Intent Joininfo;
 
     public static FragmentPage newInstance(int position) {
         FragmentPage f = new FragmentPage();
@@ -73,28 +76,22 @@ public class FragmentPage extends Fragment {
                 content.setHasFixedSize(true);
                 content.setLayoutManager(layoutManager);
 
-                // server에서 값 받아오기
+                items = new ArrayList<>();
                 loadPage();
 
-                items = new ArrayList<>();
-
-           /*     item = new Recycler_item[5];
-                item[0] = new Recycler_item("공개 소프트 웨어 공모대전", "채영도", "개발자");
-                item[1] = new Recycler_item("대학생 마케팅 아이디어 공모전", "채영도", "개발자");
-                item[2] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-                item[3] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-                item[4] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-
-                for (int i = 0; i < 5; i++) items.add(item[i]);
-*/
-
+                SharedPreferences pref = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+                final String user_id = pref.getString("user_id","");
                 content.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), content, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        //Intent Iteminfo = new Intent(getActivity(), ItemInfoActivity.class);
-                        //Iteminfo.putExtra("position", position);
-                        //startActivity(Iteminfo);
-                        Toast.makeText(getContext(), "position" + position, Toast.LENGTH_SHORT).show();
+
+                        if(writer_list[position].equals(user_id))
+                            Joininfo = new Intent(getActivity(), MasterJoinActivity.class);
+                        else
+                            Joininfo = new Intent(getActivity(), JoinActivity.class);
+                        Joininfo.putExtra("id", id_list[position]);
+                        startActivity(Joininfo);
+                        //  Toast.makeText(getContext(), "position" + id_list[position], Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -102,46 +99,15 @@ public class FragmentPage extends Fragment {
 
                     }
                 }));
-                content.setAdapter(new RecyclerAdapter(getActivity(), items, R.layout.fragment_page));
+                // content.setAdapter(new RecyclerAdapter(getActivity(), items, R.layout.fragment_page));
+                rec = new RecyclerAdapter(getActivity(), items, R.layout.fragment_page);
+                content.setAdapter(rec);
                 linearLayout.removeAllViews();
                 linearLayout.addView(content);
                 return linearLayout;
-               /* Log.e("position", String.valueOf(storage.getInstance().getPosition()));
-                linearLayout = (LinearLayout) inflater.inflate(R.layout.fragment_page, container, false);
-                content = (RecyclerView) linearLayout.findViewById(R.id.recyclerView);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                content.setHasFixedSize(true);
-                content.setLayoutManager(layoutManager);
 
-                List<Recycler_item> items = new ArrayList<>();
-                Recycler_item[] item = new Recycler_item[5];
-                item[0] = new Recycler_item("공개 소프트 웨어 공모대전", "채영도", "개발자");
-                item[1] = new Recycler_item("대학생 마케팅 아이디어 공모전", "채영도", "개발자");
-                item[2] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-                item[3] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-                item[4] = new Recycler_item("스타트업뱅크 리포트 오디션", "채영도", "개발자");
-
-                for (int i = 0; i < 5; i++) items.add(item[i]);
-                content.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), content, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Intent Iteminfo = new Intent(getActivity(), ItemInfoActivity.class);
-                        Iteminfo.putExtra("position", position);
-                        startActivity(Iteminfo);
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, int position) {
-
-                    }
-                }));
-
-                content.setAdapter(new RecyclerAdapter(getActivity(), items, R.layout.fragment_page));
-                linearLayout.removeAllViews();
-                linearLayout.addView(content);
-                return linearLayout;
-                */
             case 1:
+                /*
                 Log.e("position", String.valueOf(storage.getInstance().getPosition()));
                 linearLayout = (LinearLayout) inflater.inflate(R.layout.fragment_page, container, false);
                 content = (RecyclerView) linearLayout.findViewById(R.id.recyclerView);
@@ -173,11 +139,13 @@ public class FragmentPage extends Fragment {
 
                     }
                 }));
-                content.setAdapter(new RecyclerAdapter(getActivity(), items2, R.layout.fragment_page));
+                rec = new RecyclerAdapter(getActivity(), items2, R.layout.fragment_page);
+                content.setAdapter(rec);
+                //content.setAdapter(new RecyclerAdapter(getActivity(), items2, R.layout.fragment_page));
                 linearLayout.removeAllViews();
                 linearLayout.addView(content);
                 return linearLayout;
-                /*
+                */
                 FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
                 FrameLayout fl = new FrameLayout(getActivity());
@@ -196,7 +164,7 @@ public class FragmentPage extends Fragment {
 
                 fl.addView(v);
                 return fl;
-                */
+
             default:
                 return null;
         }
@@ -209,8 +177,6 @@ public class FragmentPage extends Fragment {
 
     void loadPage()
     {
-        Contests contest2;
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -219,11 +185,12 @@ public class FragmentPage extends Fragment {
         WazapService service = retrofit.create(WazapService.class);
 
 
-        Call<Contests> call = service.getContests(75,10);
+        Call<Contests> call = service.getContests(100,100);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {
                 if (response.isSuccess() && response.body() != null) {
+
 
                     Log.d("SUCCESS", response.message());
                     contest = response.body();
@@ -239,21 +206,20 @@ public class FragmentPage extends Fragment {
                         jsonRes = new JSONObject(result);
                         JSONArray jsonArr = jsonRes.getJSONArray("data");
                         System.out.println("--------------" + jsonArr.length());
-                       /*  Log.d("title", jsonArr.getJSONObject(0).getString("title"));
-                        Log.d("title", jsonArr.getJSONObject(1).getString("title"));
+                        int len = jsonArr.length();
+                        item = new Recycler_item[len];
+                        id_list = new String[len];
+                        writer_list = new String[len];
 
-                        sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
-                        sIntro.setText(jsonArr.getJSONObject(0).getString("introduce"));
-                        sExp.setText(jsonArr.getJSONObject(0).getString("exp"));
-                        */
-
-                        item = new Recycler_item[jsonArr.length()];
-                        for(int i =0 ; i<jsonArr.length(); i++) {
-                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("cont_writer"), jsonArr.getJSONObject(i).getString("hosts"));
+                        for(int i =0 ; i<len; i++) {
+                            id_list[i]=jsonArr.getJSONObject(i).getString("contests_id");
+                            writer_list[i]=jsonArr.getJSONObject(i).getString("cont_writer");
+                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("username"), jsonArr.getJSONObject(i).getString("hosts"));
                             items.add(item[i]);
-                            System.out.println(item[i].getTitle());
+                            //
+                            System.out.println(items.get(i).getName());
                         }
-
+                        rec.notifyDataSetChanged();
                     } catch (JSONException e) {
                     }
 
@@ -270,6 +236,7 @@ public class FragmentPage extends Fragment {
                 Log.e("Errorglg''';kl", t.getMessage());
             }
         });
+
     }
 
 

@@ -30,5 +30,6 @@ Thumbs.db
 .gradle/
 build/
 
+
 # Log Files
 *.log

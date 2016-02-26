@@ -53,11 +53,11 @@ public class showMypageActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         profileImg = (ImageView)findViewById(R.id.sPro);
         thumbnail = pref.getString("profile_img","");
+        System.out.println(pref.getString("access_token",""));
         ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
         thumb.execute();
 
         loadPage();
-        Intent intent = getIntent();
 
     }
 

@@ -20,21 +20,9 @@ public class Contests
         return msg;
     }
 
+    public ContestData getData(int i)
+    {
+        return data.get(i);
+    }
 
-}
-
-class ContestData{
-    int contests_id;
-    String title;
-    String cont_writer;
-    String hosts;
-    String categories;
-    // List<CateData>
-    String period;
-    String cover;
-    String positions;
-    int members;
-    int appliers;
-    int clips;
-    int views;
 }

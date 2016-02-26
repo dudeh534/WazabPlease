@@ -2,10 +2,8 @@ package com.ourincheon.wazap;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -23,13 +21,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ourincheon.wazap.KaKao.infoKaKao;
-import com.ourincheon.wazap.Require.RequireList;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
 /*
 * TODO - TABLayout RecyclerView insert
 * TODO - ListView Subpage*/
@@ -46,12 +37,17 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
 
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Drawable drawable = getResources().getDrawable(R.drawable.detail_title_banner);
+        toolbar.setBackground(drawable);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, RecruitActivity.class);
+                Intent i = new Intent(MainActivity.this, Recuiting_Activity_new.class);
+                i.putExtra("edit", 0);
                 //i.putExtra("KakaoInfo",kakao);
                 //i.putExtra("Nickname",nick);
                 startActivity(i);
@@ -65,16 +61,17 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        toolbar.setNavigationIcon(R.drawable.list_icon);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentPage(), "모집글(메인)");
-        adapter.addFragment(new FragmentPage(), "주간차트");
+        adapter.addFragment(new FragmentPage(), "팀원모집");
+        adapter.addFragment(new FragmentPage(), "공모전리스트");
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.GRAY, Color.BLACK);
-        tabLayout.setSelectedTabIndicatorColor(Color.GRAY);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.wazab));
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -151,17 +148,18 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.alarm) {
-
+            Intent intent = new Intent(this, AlarmList.class);
+            startActivity(intent);
         } else if (id == R.id.cart) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ClipList.class);
             startActivity(intent);
 
         } else if (id == R.id.require) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ApplyList.class);
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ContestList.class);
             startActivity(intent);
 
         } else if (id == R.id.setting) {
