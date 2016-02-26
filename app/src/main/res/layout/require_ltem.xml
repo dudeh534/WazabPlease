@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="확정인원 2명"
-                        android:id="@+id/textView26"
+                        android:id="@+id/member"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="13dp"
                         android:textSize="13dp"

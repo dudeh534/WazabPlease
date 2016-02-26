@@ -173,7 +173,7 @@ public class MypageActivity extends AppCompatActivity {
                 if (response.isSuccess() && response.body() != null) {
 
                     res = response.body();
-                    Log.d("SUCCESS--------------------", response.message());
+                    Log.d("SUCCESS-------------", response.message());
                     Log.d("SUCCESS", res.getMsg());
                     //user = response.body();
                 } else if (response.isSuccess()) {

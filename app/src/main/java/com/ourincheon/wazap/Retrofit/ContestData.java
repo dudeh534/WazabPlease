@@ -1,10 +1,13 @@
 package com.ourincheon.wazap.Retrofit;
 
+import java.io.Serializable;
+
 /**
  * Created by sue on 2016-02-24.
  */
 
-public class ContestData {
+public class ContestData  implements Serializable {
+    int applies_id;
     int contests_id;
     int recruitment;
     String title;
@@ -20,6 +23,14 @@ public class ContestData {
     int appliers;
     int clips;
     int views;
+
+    public int getApplies_id() {
+        return applies_id;
+    }
+
+    public void setApplies_id(int applies_id) {
+        this.applies_id = applies_id;
+    }
 
     public int getRecruitment() {
         return recruitment;

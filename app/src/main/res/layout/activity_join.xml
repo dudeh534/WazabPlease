@@ -5,6 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
+<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,6 +13,17 @@
         android:padding="1dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
+=======
+
+    <Button
+        android:text="찜하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jPick"
+        android:layout_alignTop="@+id/jTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+>>>>>>> d4d3757c8c452e0414c146e29467506c7a5f372f
 
         <Button
             android:id="@+id/libray_btn_toggle"

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, RecruitActivity.class);
+                i.putExtra("edit",0);
                 //i.putExtra("KakaoInfo",kakao);
                 //i.putExtra("Nickname",nick);
                 startActivity(i);
@@ -146,17 +147,18 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.alarm) {
-
+            Intent intent = new Intent(this, AlarmList.class);
+            startActivity(intent);
         } else if (id == R.id.cart) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ClipList.class);
             startActivity(intent);
 
         } else if (id == R.id.require) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ApplyList.class);
             startActivity(intent);
 
         } else if (id == R.id.gonggu) {
-            Intent intent = new Intent(this, RequireList.class);
+            Intent intent = new Intent(this, ContestList.class);
             startActivity(intent);
 
         } else if (id == R.id.setting) {

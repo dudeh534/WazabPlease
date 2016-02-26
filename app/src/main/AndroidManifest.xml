@@ -62,7 +62,25 @@
         <activity
             android:name=".JoinActivity"
             android:label="@string/title_activity_join"
+<<<<<<< HEAD
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+=======
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".AlarmList" />
+        <activity
+            android:name=".ClipList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ApplyList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ContestList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".MasterJoinActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="@string/title_activity_master_join" >
+>>>>>>> d4d3757c8c452e0414c146e29467506c7a5f372f
         </activity>
     </application>
 

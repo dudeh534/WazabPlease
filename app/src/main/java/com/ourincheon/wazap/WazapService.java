@@ -3,6 +3,7 @@ package com.ourincheon.wazap;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.KaKao.infoKaKao;
+import com.ourincheon.wazap.Retrofit.Alarms;
 import com.ourincheon.wazap.Retrofit.ContestInfo;
 import com.ourincheon.wazap.Retrofit.Contests;
 import com.ourincheon.wazap.Retrofit.UserInfo;
@@ -12,10 +13,12 @@ import com.ourincheon.wazap.Retrofit.reqContest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -91,6 +94,43 @@ public interface WazapService {
             @Query("access_token") String access_token,
             @Query("start_id") int start_id,
             @Query("amount") int amount
+    );
+
+    // 알람목록 받아오기
+    @GET("alrams")
+    Call<Alarms> getAlarmlist(
+            @Query("access_token") String access_token,
+            @Query("start_id") int start_id,
+            @Query("amount") int amount
+    );
+
+    // 찜목록 받아오기
+    @GET("clips")
+    Call<Contests> getCliplist(
+            @Query("access_token") String access_token,
+            @Query("start_id") int start_id,
+            @Query("amount") int amount
+    );
+
+    // 게시글 수정하기
+    @PUT("contests/{contest_id}")
+    Call<LinkedTreeMap> editContest(
+            @Path("contest_id") String contest_id,
+            @Body ContestInfo contestInfo
+    );
+
+    // 게시글 삭제하기
+    @DELETE("contests/{contest_id}")
+    Call<LinkedTreeMap> delContest(
+            @Path("contest_id") String contest_id,
+            @Query("access_token") String access_token
+    );
+
+    // 모집목록 받아오기
+    @GET("contests/list/{writer_id}")
+    Call<Contests> getContestlist(
+            @Path("writer_id") String writer_id,
+            @Query("access_token") String access_token
     );
 }
 
