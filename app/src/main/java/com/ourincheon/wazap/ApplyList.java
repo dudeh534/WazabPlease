@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,7 @@ public class ApplyList extends AppCompatActivity {
     String[] cont_id,apply_id;
     AlertDialog dialog;
     String access_token;
+    Button jBefore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,26 @@ public class ApplyList extends AppCompatActivity {
                 posi = position;
                 dialog.show();
                 return false;
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ContestData mData = mAdapter.mListData.get(position);
+               // Toast.makeText(AlarmList.this, mData.msg_url, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ApplyList.this, JoinActivity.class);
+                intent.putExtra("id",String.valueOf(mData.getContests_id()));
+                startActivity(intent);
+            }
+        });
+
+        jBefore = (Button) findViewById(R.id.aBefore);
+        jBefore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -334,7 +356,7 @@ public class ApplyList extends AppCompatActivity {
             // System.out.println(mData.getAppliers());
 
             Dday day = new Dday();
-            holder.Dday.setText("D "+day.dday(mData.getPeriod()));
+            holder.Dday.setText("D - "+day.dday(mData.getPeriod()));
 
             holder.Title.setText(mData.getTitle());
 
