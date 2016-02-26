@@ -140,6 +140,15 @@ public interface WazapService {
             @Path("contest_id") String contest_id,
             @Query("access_token") String access_token
     );
+
+    // 멤버변경하기
+    @FormUrlEncoded
+    @POST("contests/{contest_id}/{applies_id}")
+    Call<LinkedTreeMap> changeMember(
+            @Path("contest_id") String contest_id,
+            @Path("applies_id") String applies_id,
+            @Field("access_token") String access_token
+    );
 }
 
 
