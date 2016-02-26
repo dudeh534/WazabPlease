@@ -233,6 +233,7 @@ public class ApplierList extends AppCompatActivity {
                     Intent intent = new Intent(ApplierList.this, showProfile.class);
                     intent.putExtra("thumbnail", mData.getProfile_img());
                     intent.putExtra("user_id", mData.getApp_users_id());
+                    intent.putExtra("flag", mData.getIs_check());
                     startActivity(intent);
                 }
             });

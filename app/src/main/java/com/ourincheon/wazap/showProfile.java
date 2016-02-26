@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ourincheon.wazap.Retrofit.regUser;
@@ -26,6 +29,9 @@ public class showProfile extends AppCompatActivity {
     String thumbnail;
     regUser reguser;
     private TextView sName, sMajor, sUniv, sLoc, sKakao, sIntro, sExp;
+    int flag;
+    TextView pButton;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class showProfile extends AppCompatActivity {
         Intent intent = getIntent();
         System.out.println(intent.getExtras().getString("thumbnail"));
         System.out.println(intent.getExtras().getString("user_id"));
+        flag = intent.getExtras().getInt("flag");
 
         sName = (TextView) findViewById(R.id.pName);
         sMajor = (TextView)  findViewById(R.id.pMajor);
@@ -48,8 +55,19 @@ public class showProfile extends AppCompatActivity {
         thumbnail = intent.getExtras().getString("thumbnail");
         ThumbnailImage thumb = new ThumbnailImage(thumbnail, profileImg);
         thumb.execute();
+        user_id =intent.getExtras().getString("user_id");
 
-        loadPage(intent.getExtras().getString("user_id"));
+        loadPage(user_id);
+
+        pButton = (TextView) findViewById(R.id.pButton);
+        pButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag = 1;
+                Toast.makeText(showProfile.this, String.valueOf(flag), Toast.LENGTH_SHORT).show();
+                loadPage(user_id);
+            }
+        });
     }
 
     void loadPage(String user_id)
@@ -80,12 +98,18 @@ public class showProfile extends AppCompatActivity {
                     try{
                         jsonRes = new JSONObject(result);
                         JSONArray jsonArr = jsonRes.getJSONArray("data");
-                        Log.d("username",jsonArr.getJSONObject(0).getString("username"));
+                        Log.d("username", jsonArr.getJSONObject(0).getString("username"));
                         sName.setText(jsonArr.getJSONObject(0).getString("username"));
                         sMajor.setText(jsonArr.getJSONObject(0).getString("major"));
                         sUniv.setText(jsonArr.getJSONObject(0).getString("school"));
                         sLoc.setText(jsonArr.getJSONObject(0).getString("locate"));
-                        sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
+                        if(flag == 0)
+                            sKakao.setVisibility(View.INVISIBLE);
+                        else {
+                            sKakao.setVisibility(View.VISIBLE);
+                            System.out.println(flag);
+                            sKakao.setText(jsonArr.getJSONObject(0).getString("kakao_id"));
+                        }
                         sIntro.setText(jsonArr.getJSONObject(0).getString("introduce"));
                         sExp.setText(jsonArr.getJSONObject(0).getString("exp"));
                     }catch (JSONException e)
