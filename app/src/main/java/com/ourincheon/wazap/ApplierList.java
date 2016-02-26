@@ -202,6 +202,7 @@ public class ApplierList extends AppCompatActivity {
                 holder.aName = (TextView) convertView.findViewById(R.id.aName);
                 holder.aImage = (ImageView) convertView.findViewById(R.id.aImage);
                 holder.aPBtn = (Button) convertView.findViewById(R.id.aPBtn);
+                holder.aABtn = (Button) convertView.findViewById(R.id.aABtn);
 
                 convertView.setTag(holder);
             }else{
@@ -226,6 +227,11 @@ public class ApplierList extends AppCompatActivity {
               holder.aImage.setImageDrawable(getResources().getDrawable(R.drawable.icon_user));
           }
 
+
+            if(mData.getIs_check()==1)
+                holder.aABtn.setBackgroundResource(R.drawable.require_info_button);
+            else
+                holder.aABtn.setBackgroundResource(R.drawable.require_info_disablebutton);
 
             holder.aPBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
