@@ -1,7 +1,9 @@
 package com.ourincheon.wazap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.Retrofit.ContestData;
 import com.ourincheon.wazap.Retrofit.Contests;
 
@@ -44,7 +47,10 @@ public class ApplyList extends AppCompatActivity {
     private Not_ListViewAdapter  not_listAdapter = null;
     Contests applies;
     ArrayList<ContestData> apply_list;
-    int count;
+    int count, posi;
+    String[] cont_id,apply_id;
+    AlertDialog dialog;
+    String access_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,34 +65,93 @@ public class ApplyList extends AppCompatActivity {
         //not_listAdapter = new Not_ListAdapter(this, R.layout.not_require_item);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String access_token = pref.getString("access_token", "");
+        access_token = pref.getString("access_token", "");
 
         apply_list = new ArrayList<ContestData>();
 
         loadApply(access_token);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("찜 목록 지우기").setMessage("해당 스크랩을 지우시겠습니까?")
+                .setCancelable(true).setPositiveButton("지우기", new DialogInterface.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                ContestData mData = mAdapter.mListData.get(position);
-                Toast.makeText(ApplyList.this, "******" + mData.getApplies_id(), Toast.LENGTH_SHORT).show();
+            public void onClick(DialogInterface dialog, int which) {
+                //finish();
+                System.out.println("----------------------"+posi);
+                deleteApply(cont_id[posi],apply_id[posi]);
+               // loadApply(access_token);
+            }
+        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
+        dialog = builder.create();
 
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ApplyList.this, "취소", Toast.LENGTH_SHORT).show();
+                posi = position;
+                dialog.show();
+                return false;
+            }
+        });
 
         mAdapter = new ListViewAdapter(this);
         not_listAdapter = new Not_ListViewAdapter(this);
 
         mListView.setAdapter(mAdapter);
         mListView2.setAdapter(not_listAdapter);
-
-
-
-        //mAdapter.addItem("qewrqwe");
-    /*
-*/
-
     }
+
+    void deleteApply(String contest, String apply)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://come.n.get.us.to/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        WazapService service = retrofit.create(WazapService.class);
+
+        System.out.println("-------------------"+access_token);
+
+        Call<LinkedTreeMap> call = service.delApply(contest, apply, access_token);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Response<LinkedTreeMap> response) {
+                if (response.isSuccess() && response.body() != null) {
+
+                    LinkedTreeMap temp = response.body();
+
+                    boolean result = Boolean.parseBoolean(temp.get("result").toString());
+                    String msg = temp.get("msg").toString();
+
+                    if (result) {
+                        Log.d("저장 결과: ", msg);
+                        Toast.makeText(getApplicationContext(), "신청 취소되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Log.d("저장 실패: ", msg);
+                        Toast.makeText(getApplicationContext(), "신청취소 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (response.isSuccess()) {
+                    Log.d("Response Body isNull", response.message());
+                } else {
+                    Log.d("Response Error Body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("Error", t.getMessage());
+            }
+        });
+    }
+
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
@@ -105,6 +170,7 @@ public class ApplyList extends AppCompatActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
     void loadApply(String access_token)
     {
         Retrofit retrofit = new Retrofit.Builder()
@@ -113,9 +179,6 @@ public class ApplyList extends AppCompatActivity {
                 .build();
 
         WazapService service = retrofit.create(WazapService.class);
-
-
-
 
         Call<Contests> call = service.getAppplylist(access_token, 10, 10);
         call.enqueue(new Callback<Contests>() {
@@ -134,12 +197,16 @@ public class ApplyList extends AppCompatActivity {
                         jsonRes = new JSONObject(result);
                         JSONArray jsonArr = jsonRes.getJSONArray("data");
                         count = jsonArr.length();
+                        cont_id = new String[count];
+                        apply_id = new String[count];
                         System.out.println(count);
                         for (int i = 0; i < count; i++) {
                             System.out.println(Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")));
                             System.out.println(jsonArr.getJSONObject(i).getString("recruitment"));
                             System.out.println(jsonArr.getJSONObject(i).getString("is_finish"));
                             if(Integer.parseInt(jsonArr.getJSONObject(i).getString("is_finish")) == 0) {
+                                cont_id[i] = jsonArr.getJSONObject(i).getString("contests_id");
+                                apply_id[i] = jsonArr.getJSONObject(i).getString("applies_id");
 
                                 mAdapter.addItem(jsonArr.getJSONObject(i).getString("title"),
                                         jsonArr.getJSONObject(i).getString("period"),
@@ -158,9 +225,6 @@ public class ApplyList extends AppCompatActivity {
                                         Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
                             }
                         }
-
-
-
                         mListView.setAdapter(mAdapter);
                         mListView2.setAdapter(not_listAdapter);
 
