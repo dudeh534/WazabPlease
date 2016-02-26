@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
        nickname.setText(pref.getString("name",""));
 
         profileImg = (ImageView)header.findViewById(R.id.imageView);
-       thumbnail = pref.getString("profile_img","");
+        thumbnail = pref.getString("profile_img","");
         ThumbnailImage thumb = new ThumbnailImage(thumbnail,profileImg);
         thumb.execute();
 
@@ -95,12 +96,37 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
             public void onClick(View v) {
                 //  Toast.makeText(getApplicationContext(), "프로필 보기", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this, showMypageActivity.class);
-               // i.putExtra("KakaoInfo",kakao);
+                // i.putExtra("KakaoInfo",kakao);
                 startActivity(i);
             }
         });
 
+        Button side_Button1 = (Button) findViewById(R.id.side_button1);//custom navigation view Button setOnClickListener
+        side_Button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ClipList.class);
+                startActivity(intent);
+            }
+        });
+        Button side_Button2 = (Button) findViewById(R.id.side_button2);
+        side_Button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ApplyList.class);
+                startActivity(intent);
+            }
+        });
 
+        Button side_Button3 = (Button) findViewById(R.id.side_button3);
+        side_Button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ContestList.class);
+                startActivity(intent);
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(this);
         backPressCloseHandler = new BackPressCloseHandler(this);
     }
@@ -145,12 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            // Handle the camera action
-        } else if (id == R.id.alarm) {
-            Intent intent = new Intent(this, AlarmList.class);
-            startActivity(intent);
-        } else if (id == R.id.cart) {
+        if (id == R.id.cart) {//not work
             Intent intent = new Intent(this, ClipList.class);
             startActivity(intent);
 
@@ -161,8 +182,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigationItemS
         } else if (id == R.id.gonggu) {
             Intent intent = new Intent(this, ContestList.class);
             startActivity(intent);
-
-        } else if (id == R.id.setting) {
 
         }
 
