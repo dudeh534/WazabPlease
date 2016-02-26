@@ -214,7 +214,7 @@ public class FragmentPage extends Fragment {
                         for(int i =0 ; i<len; i++) {
                             id_list[i]=jsonArr.getJSONObject(i).getString("contests_id");
                             writer_list[i]=jsonArr.getJSONObject(i).getString("cont_writer");
-                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("username"), jsonArr.getJSONObject(i).getString("hosts"));
+                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("hosts"), jsonArr.getJSONObject(i).getString("username"));
                             items.add(item[i]);
                             //
                             System.out.println(items.get(i).getName());
