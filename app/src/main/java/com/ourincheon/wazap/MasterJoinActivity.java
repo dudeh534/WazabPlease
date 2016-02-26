@@ -37,10 +37,10 @@ public class MasterJoinActivity extends AppCompatActivity {
 
     reqContest contest;
     ContestData contestData;
-    TextView jTitle,jButton;
+    TextView jTitle,jButton,jmList,jCate,jApply,jRec,jName,jCover,jMem,jDate;
+    Button eBtn;
     String access_token,num;
     AlertDialog.Builder ad,deleteD;
-    Button eBtn,jmList;
     CharSequence list[] = {"수정하기", "삭제하기","취소"};
 
     @Override
@@ -51,6 +51,13 @@ public class MasterJoinActivity extends AppCompatActivity {
         contestData = new ContestData();
 
         jTitle = (TextView) findViewById(R.id.jmTitle);
+        jCate =  (TextView) findViewById(R.id.jmCate);
+        jApply = (TextView) findViewById(R.id.jmApply);
+        jRec = (TextView) findViewById(R.id.jmRec);
+        jName = (TextView) findViewById(R.id.jmName);
+        jCover = (TextView) findViewById(R.id.jmCover);
+        jMem = (TextView) findViewById(R.id.jmMem);
+        jDate = (TextView) findViewById(R.id.jmDate);
 
         Intent intent = getIntent();
         num =  intent.getExtras().getString("id");
@@ -109,7 +116,7 @@ public class MasterJoinActivity extends AppCompatActivity {
         });
 
         //신청자리스트보기 버튼
-        jmList = (Button) findViewById(R.id.jmList);
+        jmList = (TextView) findViewById(R.id.jmList);
         jmList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,8 +239,6 @@ public class MasterJoinActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-----------------------------"+num);
-
         Call<reqContest> call = service.getConInfo(num);
         call.enqueue(new Callback<reqContest>() {
             @Override
@@ -243,34 +248,29 @@ public class MasterJoinActivity extends AppCompatActivity {
                     Log.d("SUCCESS", response.message());
                     contest = response.body();
 
-                    //user = response.body();
                     Log.d("SUCCESS", contest.getMsg());
 
-
                     System.out.println(contest.getData().getTitle());
-                    contestData.setContests_id(contest.getData().getContests_id());
+                    jTitle.setText(contest.getData().getTitle());
+                    jCate.setText(contest.getData().getCategories());
+                    jApply.setText(String.valueOf(contest.getData().getAppliers()));
+                    jMem.setText(String.valueOf(contest.getData().getMembers()));
+                    jRec.setText(" / "+String.valueOf(contest.getData().getRecruitment()));
+                    jName.setText(contest.getData().getUsername());
+                    jCover.setText(contest.getData().getCover());
+
+                    String[] parts = contest.getData().getPeriod().split("T");
+                    Dday day = new Dday();
+                    jDate.setText("D - "+day.dday(parts[0]));
+
                     contestData.setTitle(contest.getData().getTitle());
-                    contestData.setHosts(contest.getData().getHosts());
-                    contestData.setRecruitment(contest.getData().getRecruitment());
                     contestData.setCategories(contest.getData().getCategories());
-                    contestData.setPeriod(contest.getData().getPeriod());
+                    contestData.setAppliers(contest.getData().getAppliers());
+                    contestData.setMembers(contest.getData().getMembers());
+                    contestData.setRecruitment(contest.getData().getRecruitment());
+                    contestData.setUsername(contest.getData().getUsername());
                     contestData.setCover(contest.getData().getCover());
-                    contestData.setPositions(contest.getData().getPositions());
 
-                    jTitle.setText(contestData.getTitle());
-                  /* String result = new Gson().toJson(contest);
-                    Log.d("SUCESS-----", result);
-
-                    JSONObject jsonRes;
-                    try {
-                        jsonRes = new JSONObject(result);
-                        JSONArray jsonArr = jsonRes.getJSONArray("data");
-                        System.out.println("--------------" + jsonArr.length());
-                         Log.d("title", jsonArr.getJSONObject(0).getString("title"));
-
-                    } catch (JSONException e) {
-                    }
-                */
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
                 } else {

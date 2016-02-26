@@ -44,6 +44,7 @@ public class RecruitActivity extends AppCompatActivity {
     TextView save;
     ImageView profileImg;
     String thumbnail;
+    ContestData con;
     ContestInfo contest2;
     int mode,contest_id;
 
@@ -72,11 +73,11 @@ public class RecruitActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mode = intent.getExtras().getInt("edit");
+        con = (ContestData) intent.getExtras().getSerializable("contestD");
         if(mode==1) {
             System.out.println("----------------------------------------------");
-            ContestData con = new ContestData();
-            con = (ContestData) intent.getExtras().getSerializable("contestD");
             reTitle.setText(con.getTitle());
+            System.out.println(con.getTitle());
             reHost.setText(con.getHosts());
             eNum.setText(String.valueOf(con.getRecruitment()));
             erIntro.setText(con.getCover());

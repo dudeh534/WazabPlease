@@ -25,6 +25,7 @@ public class ContestData  implements Serializable {
     int views;
     int is_finish;
 
+    public ContestData(){}
     public int getIs_finish() {
         return is_finish;
     }
