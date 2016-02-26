@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -29,20 +30,6 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <Button
-            android:text="♡"
-            android:layout_width="20.67dp"
-            android:layout_height="19.33dp"
-            android:id="@+id/jPick"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="#ffffff"
-            android:layout_marginTop="13dp"
-            android:textSize="20dp"
-            android:textColor="#0067ff"
-            android:layout_marginRight="15.33dp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -58,15 +45,6 @@
         android:layout_height="50dp"
         android:id="@+id/titleLayout"
         android:layout_below="@+id/linearLayout5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D - 23"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="12dp"
-            android:textColor="#FF0000"
-            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/jTitle"
@@ -95,58 +73,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout7">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="107dp"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="57dp"
-                android:layout_height="57dp"
-                android:id="@+id/imageView4"
-                android:background="@drawable/detail_photobg"
-                android:layout_marginTop="29.33dp"
-                android:layout_marginLeft="18.67dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="변요한"
-                android:id="@+id/textView17"
-                android:layout_marginLeft="28.33dp"
-                android:layout_marginTop="13dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:id="@+id/imageView5"
-                    android:layout_marginLeft="12.67dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/kakaotalk_icon"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="dudeh534"
-                    android:id="@+id/textView16"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="65.67dp"
-                android:layout_height="20dp"
-                android:text="상세프로필"
-                android:id="@+id/textView31"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="23.33dp" />
-        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
