@@ -155,7 +155,7 @@
                         android:layout_marginTop="5dp" />
 
                     <TextView
-                        android:id="@+id/name"
+                        android:id="@+id/loc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="서울"
@@ -172,7 +172,7 @@
                         android:layout_marginTop="5dp" />
 
                     <TextView
-                        android:id="@+id/textView37"
+                        android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="오이담"

@@ -1,6 +1,8 @@
 package com.ourincheon.wazap;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.ourincheon.wazap.Retrofit.Alarms;
 import com.ourincheon.wazap.Retrofit.ContestData;
 import com.ourincheon.wazap.Retrofit.Contests;
@@ -42,7 +45,11 @@ public class ClipList extends AppCompatActivity {
     private ListViewAdapter mAdapter = null;
     Contests clips;
     ArrayList<ContestData> clip_list;
-    int count;
+    int count, posi;
+    String[] id_list;
+    AlertDialog dialog;
+    String access_token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +59,37 @@ public class ClipList extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.cliplistView);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        String access_token = pref.getString("access_token", "");
+        access_token = pref.getString("access_token", "");
 
         clip_list = new ArrayList<ContestData>();
 
         loadClip(access_token);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("찜 목록 지우기").setMessage("해당 스크랩을 지우시겠습니까?")
+                .setCancelable(true).setPositiveButton("지우기", new DialogInterface.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("=================");
+            public void onClick(DialogInterface dialog, int which) {
+                //finish();
+                System.out.println("----------------------"+posi);
+                deleteClip(id_list[posi]);
+                loadClip(access_token);
+            }
+        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
         });
+        dialog = builder.create();
 
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ClipList.this, "취소", Toast.LENGTH_SHORT).show();
+                posi = position;
+                dialog.show();
                 return false;
             }
         });
@@ -76,9 +97,54 @@ public class ClipList extends AppCompatActivity {
         mAdapter = new ListViewAdapter(this);
         mListView.setAdapter(mAdapter);
 
-
-
     }
+
+    void deleteClip(String contest_id)
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://come.n.get.us.to/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        WazapService service = retrofit.create(WazapService.class);
+
+        System.out.println("-------------------"+access_token);
+
+        Call<LinkedTreeMap> call = service.delClip(contest_id, access_token);
+        call.enqueue(new Callback<LinkedTreeMap>() {
+            @Override
+            public void onResponse(Response<LinkedTreeMap> response) {
+                if (response.isSuccess() && response.body() != null) {
+
+                    LinkedTreeMap temp = response.body();
+
+                    boolean result = Boolean.parseBoolean(temp.get("result").toString());
+                    String msg = temp.get("msg").toString();
+
+                    if (result) {
+                        Log.d("저장 결과: ", msg);
+                        Toast.makeText(getApplicationContext(), "스크랩 취소되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Log.d("저장 실패: ", msg);
+                        Toast.makeText(getApplicationContext(), "스크랩취소 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (response.isSuccess()) {
+                    Log.d("Response Body isNull", response.message());
+                } else {
+                    Log.d("Response Error Body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+                Log.e("Error", t.getMessage());
+            }
+        });
+    }
+
 
     void loadClip(String access_token)
     {
@@ -90,9 +156,7 @@ public class ClipList extends AppCompatActivity {
         WazapService service = retrofit.create(WazapService.class);
 
 
-
-
-        Call<Contests> call = service.getCliplist(access_token, 100, 100);
+        Call<Contests> call = service.getCliplist(access_token, 200, 200);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {
@@ -109,14 +173,16 @@ public class ClipList extends AppCompatActivity {
                         jsonRes = new JSONObject(result);
                         JSONArray jsonArr = jsonRes.getJSONArray("data");
                         count = jsonArr.length();
+                        id_list = new String[count];
                         System.out.println(count);
                         for (int i = 0; i < count; i++) {
-
                             mAdapter.addItem(jsonArr.getJSONObject(i).getString("title"),
                                     jsonArr.getJSONObject(i).getString("period"),
                                     jsonArr.getJSONObject(i).getString("categories"),
                                     Integer.parseInt(jsonArr.getJSONObject(i).getString("contests_id")),
                                     Integer.parseInt(jsonArr.getJSONObject(i).getString("members")));
+
+                            id_list[i]= jsonArr.getJSONObject(i).getString("contests_id");
                           }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {

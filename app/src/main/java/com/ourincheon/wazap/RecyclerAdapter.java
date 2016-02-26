@@ -41,7 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, item.getTitle() + " " + position, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, item.getTitle() + " " + position, Toast.LENGTH_SHORT).show();
 
             }
         });

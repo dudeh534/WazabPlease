@@ -34,7 +34,7 @@ import retrofit2.Retrofit;
 public class JoinActivity extends AppCompatActivity {
 
     reqContest contest;
-    TextView jTitle,jButton;
+    TextView jTitle,jButton,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
     String access_token,num;
     Button jPick;
 
@@ -44,6 +44,14 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
 
         jTitle = (TextView) findViewById(R.id.jTitle);
+        jCate =  (TextView) findViewById(R.id.jCate);
+        jApply = (TextView) findViewById(R.id.jApply);
+        jRec = (TextView) findViewById(R.id.jRec);
+        jName = (TextView) findViewById(R.id.jName);
+        jCover = (TextView) findViewById(R.id.jCover);
+        jMem = (TextView) findViewById(R.id.jMem);
+        jDate = (TextView) findViewById(R.id.jDate);
+        jHost = (TextView) findViewById(R.id.jHost);
 
         Intent intent = getIntent();
         num =  intent.getExtras().getString("id");
@@ -176,8 +184,6 @@ public class JoinActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-----------------------------"+num);
-
         Call<reqContest> call = service.getConInfo(num);
         call.enqueue(new Callback<reqContest>() {
             @Override
@@ -187,24 +193,22 @@ public class JoinActivity extends AppCompatActivity {
                     Log.d("SUCCESS", response.message());
                     contest = response.body();
 
-                    //user = response.body();
                     Log.d("SUCCESS", contest.getMsg());
 
                     System.out.println(contest.getData().getTitle());
                     jTitle.setText(contest.getData().getTitle());
-                  /* String result = new Gson().toJson(contest);
-                    Log.d("SUCESS-----", result);
+                    jCate.setText(contest.getData().getCategories());
+                    jApply.setText(String.valueOf(contest.getData().getAppliers()));
+                    jMem.setText(String.valueOf(contest.getData().getMembers()));
+                    jRec.setText(" / "+String.valueOf(contest.getData().getRecruitment()));
+                    jName.setText(contest.getData().getUsername());
+                    jCover.setText(contest.getData().getCover());
+                    jHost.setText(contest.getData().getCover());
 
-                    JSONObject jsonRes;
-                    try {
-                        jsonRes = new JSONObject(result);
-                        JSONArray jsonArr = jsonRes.getJSONArray("data");
-                        System.out.println("--------------" + jsonArr.length());
-                         Log.d("title", jsonArr.getJSONObject(0).getString("title"));
+                    String[] parts = contest.getData().getPeriod().split("T");
+                    Dday day = new Dday();
+                    jDate.setText("D - "+day.dday(parts[0]));
 
-                    } catch (JSONException e) {
-                    }
-                */
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
                 } else {

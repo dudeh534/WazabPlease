@@ -25,6 +25,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -61,18 +63,6 @@ public class AlarmList extends AppCompatActivity {
         alarm_list = new ArrayList<AlarmData>();
 
         loadAlarm(access_token);
-
-        System.out.println("---------------------" + alarm_list.size());
-
-/*
-        mAdapter.addItem("qewrqwe",
-                "sfdgsdfg",
-                "2014-02-18");
-        mAdapter.addItem("qewrqwe",
-                "werweqrqwe",
-                "2014-02-01");
-                */
-        //mAdapter.addItem(getResources().getDrawable(R.drawable.icon_user),"ewt2342","2014-02-04");
 
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -123,6 +113,7 @@ public class AlarmList extends AppCompatActivity {
 
                             mAdapter.addItem(jsonArr.getJSONObject(i).getString("msg_url"),
                                     jsonArr.getJSONObject(i).getString("msg"), jsonArr.getJSONObject(i).getString("alramdate"),
+                                    jsonArr.getJSONObject(i).getString("profile_img"),
                                     Integer.parseInt(jsonArr.getJSONObject(i).getString("alram_id")),
                                     Integer.parseInt(jsonArr.getJSONObject(i).getString("is_check")),
                                     jsonArr.getJSONObject(i).getString("username"));
@@ -180,11 +171,17 @@ public class AlarmList extends AppCompatActivity {
             return position;
         }
 
-        public void addItem(String icon, String msg, String date, int alarm_id, int is_check, String username){
+        public void addItem(String msg_url, String msg, String date, String img ,int alarm_id, int is_check, String username){
             AlarmData addInfo = null;
             addInfo = new AlarmData();
-            addInfo.msg_url = icon;
+            addInfo.msg_url = msg_url;
             addInfo.msg = msg;
+            try {
+                String thumb = URLDecoder.decode(img, "EUC_KR");
+                addInfo.setProfile_img(thumb);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             String[] parts = date.split("T");
             addInfo.alramdate=parts[0];
             addInfo.alram_id = alarm_id;
@@ -223,13 +220,15 @@ public class AlarmList extends AppCompatActivity {
 
             AlarmData mData = mListData.get(position);
 
-            if (mData.mIcon != null) {
+            if (mData.getProfile_img() != null) {
                 holder.mIcon.setVisibility(View.VISIBLE);
-                holder.mIcon.setImageDrawable(mData.mIcon);
+                ThumbnailImage thumb = new ThumbnailImage(mData.getProfile_img(), holder.mIcon);
+                thumb.execute();
             }else{
                 holder.mIcon.setVisibility(View.VISIBLE);
                 holder.mIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_user));
             }
+
 
             holder.mText.setText(mData.username + mData.msg);
             holder.mDate.setText(mData.alramdate);

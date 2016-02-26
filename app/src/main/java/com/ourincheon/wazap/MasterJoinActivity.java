@@ -37,10 +37,10 @@ public class MasterJoinActivity extends AppCompatActivity {
 
     reqContest contest;
     ContestData contestData;
-    TextView jTitle,jButton;
+    TextView jTitle,jButton,jmList,jCate,jApply,jRec,jName,jCover,jMem,jDate,jHost;
+    Button eBtn;
     String access_token,num;
     AlertDialog.Builder ad,deleteD;
-    Button eBtn,jmList;
     CharSequence list[] = {"수정하기", "삭제하기","취소"};
 
     @Override
@@ -51,6 +51,14 @@ public class MasterJoinActivity extends AppCompatActivity {
         contestData = new ContestData();
 
         jTitle = (TextView) findViewById(R.id.jmTitle);
+        jCate =  (TextView) findViewById(R.id.jmCate);
+        jApply = (TextView) findViewById(R.id.jmApply);
+        jRec = (TextView) findViewById(R.id.jmRec);
+        jName = (TextView) findViewById(R.id.jmName);
+        jCover = (TextView) findViewById(R.id.jmCover);
+        jMem = (TextView) findViewById(R.id.jmMem);
+        jDate = (TextView) findViewById(R.id.jmDate);
+        jHost = (TextView) findViewById(R.id.jmHost);
 
         Intent intent = getIntent();
         num =  intent.getExtras().getString("id");
@@ -61,11 +69,11 @@ public class MasterJoinActivity extends AppCompatActivity {
 
 
         deleteD = new AlertDialog.Builder(this);
-        deleteD.setMessage("프로그램을 종료 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+        deleteD.setMessage("모집글을 마감하시겠습니까?").setCancelable(false).setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // endContest(num, access_token);
+                     endContest();
                     }
                 }).setNegativeButton("취소",
                 new DialogInterface.OnClickListener() {
@@ -75,7 +83,7 @@ public class MasterJoinActivity extends AppCompatActivity {
                     }
                 });
 
-        // 마감버튼
+        // 마감버튼까
         jButton = (TextView) findViewById(R.id.jmButton);
         jButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +117,7 @@ public class MasterJoinActivity extends AppCompatActivity {
         });
 
         //신청자리스트보기 버튼
-        jmList = (Button) findViewById(R.id.jmList);
+        jmList = (TextView) findViewById(R.id.jmList);
         jmList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,9 +185,8 @@ public class MasterJoinActivity extends AppCompatActivity {
         });
     }
 
-    void endContest(String num, String access_token)
+    void endContest( )
     {
-        /*
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://come.n.get.us.to/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -187,8 +194,9 @@ public class MasterJoinActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-------------------"+access_token);
-        Call<LinkedTreeMap> call = service.applyContests(num,access_token);
+        System.out.println("-------------------"+num);
+
+        Call<LinkedTreeMap> call = service.finishContest(num, access_token);
         call.enqueue(new Callback<LinkedTreeMap>() {
             @Override
             public void onResponse(Response<LinkedTreeMap> response) {
@@ -201,11 +209,11 @@ public class MasterJoinActivity extends AppCompatActivity {
 
                     if (result) {
                         Log.d("저장 결과: ", msg);
-                        Toast.makeText(getApplicationContext(), "신청되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "마감되었습니다.", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Log.d("저장 실패: ", msg);
-                        Toast.makeText(getApplicationContext(), "신청 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "마감 안됬습니다.다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                     }
 
                 } else if (response.isSuccess()) {
@@ -221,7 +229,6 @@ public class MasterJoinActivity extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
             }
         });
-        */
     }
 
     void loadPage(String num)
@@ -233,8 +240,6 @@ public class MasterJoinActivity extends AppCompatActivity {
 
         WazapService service = retrofit.create(WazapService.class);
 
-        System.out.println("-----------------------------"+num);
-
         Call<reqContest> call = service.getConInfo(num);
         call.enqueue(new Callback<reqContest>() {
             @Override
@@ -244,34 +249,32 @@ public class MasterJoinActivity extends AppCompatActivity {
                     Log.d("SUCCESS", response.message());
                     contest = response.body();
 
-                    //user = response.body();
                     Log.d("SUCCESS", contest.getMsg());
 
-
                     System.out.println(contest.getData().getTitle());
-                    contestData.setContests_id(contest.getData().getContests_id());
+                    jTitle.setText(contest.getData().getTitle());
+                    jCate.setText(contest.getData().getCategories());
+                    jApply.setText(String.valueOf(contest.getData().getAppliers()));
+                    jMem.setText(String.valueOf(contest.getData().getMembers()));
+                    jRec.setText(" / "+String.valueOf(contest.getData().getRecruitment()));
+                    jName.setText(contest.getData().getUsername());
+                    jCover.setText(contest.getData().getCover());
+                    jHost.setText(contest.getData().getHosts());
+
+                    String[] parts = contest.getData().getPeriod().split("T");
+                    Dday day = new Dday();
+                    jDate.setText("D - "+day.dday(parts[0]));
+
                     contestData.setTitle(contest.getData().getTitle());
-                    contestData.setHosts(contest.getData().getHosts());
-                    contestData.setRecruitment(contest.getData().getRecruitment());
                     contestData.setCategories(contest.getData().getCategories());
-                    contestData.setPeriod(contest.getData().getPeriod());
+                    contestData.setAppliers(contest.getData().getAppliers());
+                    contestData.setMembers(contest.getData().getMembers());
+                    contestData.setRecruitment(contest.getData().getRecruitment());
+                    contestData.setUsername(contest.getData().getUsername());
                     contestData.setCover(contest.getData().getCover());
-                    contestData.setPositions(contest.getData().getPositions());
+                    contestData.setHosts(contest.getData().getHosts());
+                    contestData.setContests_id(contest.getData().getContests_id());
 
-                    jTitle.setText(contestData.getTitle());
-                  /* String result = new Gson().toJson(contest);
-                    Log.d("SUCESS-----", result);
-
-                    JSONObject jsonRes;
-                    try {
-                        jsonRes = new JSONObject(result);
-                        JSONArray jsonArr = jsonRes.getJSONArray("data");
-                        System.out.println("--------------" + jsonArr.length());
-                         Log.d("title", jsonArr.getJSONObject(0).getString("title"));
-
-                    } catch (JSONException e) {
-                    }
-                */
                 } else if (response.isSuccess()) {
                     Log.d("Response Body isNull", response.message());
                 } else {
@@ -310,3 +313,4 @@ public class MasterJoinActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
