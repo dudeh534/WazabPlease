@@ -50,6 +50,7 @@ public class FacebookLogin extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         getHash();
         /* android app key 생성
@@ -66,8 +67,7 @@ public class FacebookLogin extends Activity {
 
         setContentView(R.layout.activity_login);
 
-        Intent intent = new Intent(this, Splash.class);
-        startActivity(intent);
+
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
