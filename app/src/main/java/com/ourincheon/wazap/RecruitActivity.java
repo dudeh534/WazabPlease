@@ -95,9 +95,9 @@ public class RecruitActivity extends AppCompatActivity {
                 contest2.setHosts(reHost.getText().toString());
                 contest2.setCover(erIntro.getText().toString());
 
-                contest2.setCategories("디자인/UCC");
-                contest2.setPeriod("2016-03-15");
-                contest2.setPositions("개발자");
+                contest2.setCategories("논문/학술");
+                contest2.setPeriod("2016-04-29");
+                contest2.setPositions("기획자");
 
                 if(mode == 0)
                     sendContest(contest2);

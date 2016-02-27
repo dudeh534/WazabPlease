@@ -185,7 +185,7 @@ public class FragmentPage extends Fragment {
         WazapService service = retrofit.create(WazapService.class);
 
 
-        Call<Contests> call = service.getContests(200,200);
+        Call<Contests> call = service.getContests(300,300);
         call.enqueue(new Callback<Contests>() {
             @Override
             public void onResponse(Response<Contests> response) {
@@ -214,7 +214,11 @@ public class FragmentPage extends Fragment {
                         for(int i =0 ; i<len; i++) {
                             id_list[i]=jsonArr.getJSONObject(i).getString("contests_id");
                             writer_list[i]=jsonArr.getJSONObject(i).getString("cont_writer");
-                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"), jsonArr.getJSONObject(i).getString("hosts"), jsonArr.getJSONObject(i).getString("username"));
+                            item[i] = new Recycler_item(jsonArr.getJSONObject(i).getString("title"),
+                                    jsonArr.getJSONObject(i).getString("hosts"), jsonArr.getJSONObject(i).getString("username"),
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("recruitment")),
+                                    Integer.parseInt(jsonArr.getJSONObject(i).getString("members"))
+                            );
                             items.add(item[i]);
                             //
                             System.out.println(items.get(i).getName());

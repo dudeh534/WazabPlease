@@ -8,6 +8,8 @@ public class Recycler_item {
     private String title;
     private String text;
     private String name;
+    private int recruit;
+    private int member;
 
 
     String getTitle(){
@@ -21,9 +23,19 @@ public class Recycler_item {
         return this.name;
     }
 
-    Recycler_item(String title, String text, String name){
+    public int getRecruit() {
+        return recruit;
+    }
+
+    public int getMember() {
+        return member;
+    }
+
+    Recycler_item(String title, String text, String name, int recruit,int member){
         this.title=title;
         this.text=text;
         this.name=name;
+        this.recruit = recruit;
+        this.member = member;
     }
 }

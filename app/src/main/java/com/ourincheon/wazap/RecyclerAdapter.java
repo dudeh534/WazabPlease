@@ -38,6 +38,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.title.setText(item.getTitle());
         holder.name.setText(item.getName());
         holder.text.setText(item.getText());
+        holder.recruit.setText(" / "+String.valueOf(item.getRecruit()));
+        holder.member.setText(String.valueOf(item.getMember()));
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, text, name;
+        TextView title, text, name,recruit, member;
         CardView cardview;
 
         public ViewHolder(View itemView) {
@@ -62,6 +64,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             name = (TextView) itemView.findViewById(R.id.name);
             text = (TextView) itemView.findViewById(R.id.text);
             title = (TextView) itemView.findViewById(R.id.title);
+            recruit = (TextView) itemView.findViewById(R.id.recruit);
+            member = (TextView) itemView.findViewById(R.id.member);
             cardview = (CardView) itemView.findViewById(R.id.cardView);
         }
     }
