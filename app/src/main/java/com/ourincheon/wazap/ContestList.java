@@ -71,7 +71,7 @@ public class ContestList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ContestData mData = mAdapter.mListData.get(position);
                 // Toast.makeText(AlarmList.this, mData.msg_url, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ContestList.this, JoinActivity.class);
+                Intent intent = new Intent(ContestList.this, MasterJoinActivity.class);
                 intent.putExtra("id",String.valueOf(mData.getContests_id()));
                 startActivity(intent);
             }
